@@ -8,44 +8,132 @@
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'League Spartan', sans-serif; background-color: #B9E9FF; color: #fff; line-height: 1.1; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        
+        body { 
+            font-family: 'League Spartan', sans-serif; 
+            background-color: #B9E9FF; /* Inviting Hugo Blue */
+            color: #fff; /* White text for A24 aesthetic */
+            line-height: 1.1;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
 
-        /* A24/Beau Minimalist Hero */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
-        h1 { font-size: clamp(4.5rem, 18vw, 12rem); font-weight: 900; letter-spacing: -6px; text-transform: uppercase; line-height: 0.75; margin-bottom: 30px; }
-        .logline { font-size: 1.15rem; max-width: 750px; font-weight: 500; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 3px; opacity: 0.9; }
-        .release { font-weight: 900; letter-spacing: 10px; font-size: 1.4rem; text-transform: uppercase; }
+        /* Hero - Minimalist & High Impact */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 { 
+            font-size: clamp(4.5rem, 18vw, 12rem); 
+            font-weight: 900; 
+            letter-spacing: -6px; 
+            text-transform: uppercase;
+            line-height: 0.75;
+            margin-bottom: 30px;
+        }
+
+        .logline { 
+            font-size: 1.15rem; 
+            max-width: 750px; 
+            font-weight: 500;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0.9;
+        }
+
+        .release { 
+            font-weight: 900; 
+            letter-spacing: 10px; 
+            font-size: 1.4rem; 
+            text-transform: uppercase;
+        }
 
         .container { max-width: 1400px; margin: 0 auto; padding: 0 20px 100px; }
-        .video-wrapper { width: 100%; margin: 120px 0; box-shadow: 0 30px 80px rgba(0,0,0,0.15); }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
+
+        /* Trailer - A24 Presentation */
+        .video-wrapper { 
+            width: 100%; 
+            margin: 120px 0; 
+            box-shadow: 0 30px 80px rgba(0,0,0,0.15); 
+        }
+        .video-container { 
+            position: relative; 
+            padding-bottom: 56.25%; 
+            height: 0; 
+            background: #000; 
+        }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
         /* Seamless Cast Grid */
-        .section-header { font-weight: 900; font-size: 3.5rem; text-transform: uppercase; margin-bottom: 60px; text-align: center; letter-spacing: -2px; }
-        .cast-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2px; background: #fff; border: 2px solid #fff; margin-bottom: 140px; }
+        .section-header { 
+            font-weight: 900; 
+            font-size: 3.5rem; 
+            text-transform: uppercase; 
+            margin-bottom: 60px; 
+            text-align: center; 
+            letter-spacing: -2px; 
+        }
+        
+        .cast-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 2px; 
+            background: #fff; 
+            border: 2px solid #fff;
+            margin-bottom: 140px;
+        }
+        
         .cast-card { background: #B9E9FF; position: relative; overflow: hidden; aspect-ratio: 4/5; }
         .cast-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s cubic-bezier(0.2, 0.1, 0.2, 1); }
         .cast-card:hover img { transform: scale(1.05); }
-        .cast-info { position: absolute; bottom: 0; left: 0; width: 100%; padding: 35px; background: linear-gradient(transparent, rgba(0,0,0,0.95)); }
+        
+        .cast-info { 
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 35px; 
+            background: linear-gradient(transparent, rgba(0,0,0,0.95)); 
+        }
+        
         .cast-name { font-weight: 800; font-size: 1.6rem; text-transform: uppercase; margin-bottom: 5px; }
         .cast-role { font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 18px; opacity: 0.75; text-transform: uppercase; }
-        .cast-links a { color: #fff; text-decoration: none; font-size: 0.8rem; margin-right: 25px; font-weight: 900; letter-spacing: 1.5px; border-bottom: 1px solid transparent; }
-        .cast-links a:hover { border-bottom: 1px solid #fff; }
+        .cast-links a { color: #fff; text-decoration: none; font-size: 0.8rem; margin-right: 25px; font-weight: 900; letter-spacing: 1.5px; }
+        .cast-links a:hover { opacity: 0.6; }
 
-        /* Register Box */
-        .register-box { background: rgba(255,255,255,0.08); padding: 100px 20px; text-align: center; margin-bottom: 140px; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        /* Registration Box */
+        .register-box { 
+            background: rgba(255,255,255,0.08); 
+            padding: 100px 20px; 
+            text-align: center; 
+            margin-bottom: 140px; 
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
         .register-box h2 { font-weight: 900; text-transform: uppercase; margin-bottom: 40px; font-size: 2.5rem; letter-spacing: -1.5px; }
+        
         .register-form { display: flex; justify-content: center; max-width: 600px; margin: 0 auto; background: #fff; padding: 5px; }
         .register-form input { padding: 20px; border: 0; width: 100%; font-family: 'League Spartan'; font-weight: 700; font-size: 1.1rem; outline: none; color: #000; }
-        .register-form button { background: #000; color: #fff; border: 0; padding: 0 50px; font-weight: 900; cursor: pointer; text-transform: uppercase; letter-spacing: 3px; transition: 0.4s; }
-        .register-form button:hover { background: #333; }
+        .register-form button { background: #000; color: #fff; border: 0; padding: 0 50px; font-weight: 900; cursor: pointer; text-transform: uppercase; letter-spacing: 3px; }
 
-        .social-btns { display: flex; justify-content: center; gap: 50px; margin-bottom: 80px; }
-        .social-btns img { height: 30px; width: auto; filter: invert(1); opacity: 0.7; transition: 0.4s; }
+        /* Small Classy Logo Buttons */
+        .social-btns { display: flex; justify-content: center; gap: 40px; margin-bottom: 80px; }
+        .social-btns img { height: 25px; width: auto; filter: invert(1); opacity: 0.7; transition: 0.4s; }
         .social-btns img:hover { opacity: 1; transform: translateY(-5px); }
-        .footer { text-align: center; padding: 140px 20px; font-size: 0.9rem; letter-spacing: 6px; text-transform: uppercase; border-top: 1px solid rgba(255,255,255,0.15); }
-        .footer a { color: #fff; text-decoration: none; font-weight: 900; transition: 0.3s; }
+
+        /* Footer */
+        .footer { 
+            text-align: center; 
+            padding: 140px 20px; 
+            font-size: 0.9rem; 
+            letter-spacing: 6px; 
+            text-transform: uppercase; 
+            border-top: 1px solid rgba(255,255,255,0.15); 
+        }
+        .footer a { color: #fff; text-decoration: none; font-weight: 900; }
         .director-links { margin-top: 25px; display: flex; justify-content: center; gap: 30px; font-size: 0.75rem; letter-spacing: 3px; }
     </style>
 </head>
@@ -66,42 +154,10 @@
 
         <h2 class="section-header">The Cast</h2>
         <div class="cast-grid">
-            <div class="cast-card"><img src="Hapka.jpg" alt="Mark Hapka"><div class="cast-info"><p class="cast-role">Hugo</p><p class="cast-name">Mark Hapka</p><div class="cast-links"><a href="https://www.instagram.com/markhapka/" target="_blank">IG</a><a href="https://www.imdb.com/name/nm2639722/" target="_blank">IMDB</a></div></div></div>
-            <div class="cast-card"><img src="Shechori.jpg" alt="Tomer Shechori"><div class="cast-info"><p class="cast-role">Tonty</p><p class="cast-name">Tomer Shechori</p><div class="cast-links"><a href="https://tomer-shechori.com/biography/" target="_blank">BIO</a><a href="https://www.imdb.com/name/nm3028788/" target="_blank">IMDB</a></div></div></div>
-            <div class="cast-card"><img src="Julian.jpg" alt="Jose Julian"><div class="cast-info"><p class="cast-role">Viggo</p><p class="cast-name">Jose Julian</p><div class="cast-links"><a href="https://www.imdb.com/name/nm1214509/" target="_blank">IMDB</a></div></div></div>
-            <div class="cast-card"><img src="Voelkel.jpg" alt="Riley Voelkel"><div class="cast-info"><p class="cast-role">Cristina</p><p class="cast-name">Riley Voelkel</p><div class="cast-links"><a href="https://www.instagram.com/lifeofrileyv/" target="_blank">IG</a><a href="https://www.imdb.com/name/nm3754272/" target="_blank">IMDB</a></div></div></div>
-            <div class="cast-card"><img src="ODonahue.jpg" alt="Becky O'Donohue"><div class="cast-info"><p class="cast-role">Cast</p><p class="cast-name">Becky O’Donohue</p><div class="cast-links"><a href="https://www.imdb.com/name/nm1659558/" target="_blank">IMDB</a></div></div></div>
-            <div class="cast-card"><img src="Voges.jpg" alt="Torsten Voges"><div class="cast-info"><p class="cast-role">Cast</p><p class="cast-name">Torsten Voges</p><div class="cast-links"><a href="https://www.imdb.com/name/nm0901024/" target="_blank">IMDB</a></div></div></div>
-            <div class="cast-card"><img src="Dickson.jpg" alt="Neil Dickson"><div class="cast-info"><p class="cast-role">Cast</p><p class="cast-name">Neil Dickson</p><div class="cast-links"><a href="https://www.instagram.com/dicksonneil/" target="_blank">IG</a><a href="https://www.imdb.com/name/nm0225698/" target="_blank">IMDB</a></div></div></div>
-            <div class="cast-card"><img src="Nnadi.jpg" alt="Chi Nnadi"><div class="cast-info"><p class="cast-role">Cast</p><p class="cast-name">Chi Nnadi</p><div class="cast-links"><a href="https://www.instagram.com/chi.was.here/" target="_blank">IG</a><a href="https://www.imdb.com/name/nm1938165/" target="_blank">IMDB</a></div></div></div>
-        </div>
-
-        <div class="register-box">
-            <h2>Get Updates</h2>
-            <form class="register-form" action="https://formspree.io/f/frankjreina@gmail.com" method="POST">
-                <input type="email" name="email" placeholder="YOUR EMAIL ADDRESS" required>
-                <button type="submit">JOIN</button>
-            </form>
-        </div>
-
-        <div class="social-btns">
-            <a href="https://www.facebook.com/Scrambledfilm" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
-            <a href="https://www.imdb.com/title/tt2447742/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg" alt="IMDB"></a>
-        </div>
-    </div>
-
-    <footer class="footer">
-        Written & Directed by <a href="https://www.instagram.com/frankjreina/" target="_blank">Frank Reina</a><br>
-        Produced by Robert A. Stone<br>
-        <div class="director-links">
-            <a href="https://www.youtube.com/@FrankjReina" target="_blank">YOUTUBE</a>
-            <a href="https://substack.com/@frankjreina" target="_blank">SUBSTACK</a>
-            <a href="https://www.imdb.com/name/nm2676940/" target="_blank">IMDB</a>
-        </div>
-        <br><br>
-        <a href="mailto:frankjreina@gmail.com">CONTACT</a><br><br>
-        &copy; 2026 SCRAMBLED INDIE FEATURES
-    </footer>
-
-</body>
-</html>
+            <div class="cast-card"><img src="Hapka.jpg"><div class="cast-info"><p class="cast-role">Hugo</p><p class="cast-name">Mark Hapka</p><div class="cast-links"><a href="https://www.instagram.com/markhapka/" target="_blank">IG</a><a href="https://www.imdb.com/name/nm2639722/" target="_blank">IMDB</a></div></div></div>
+            <div class="cast-card"><img src="Shechori.jpg"><div class="cast-info"><p class="cast-role">Tonty</p><p class="cast-name">Tomer Shechori</p><div class="cast-links"><a href="https://tomer-shechori.com/biography/" target="_blank">BIO</a><a href="https://www.imdb.com/name/nm3028788/" target="_blank">IMDB</a></div></div></div>
+            <div class="cast-card"><img src="Julian.jpg"><div class="cast-info"><p class="cast-role">Viggo</p><p class="cast-name">Jose Julian</p><div class="cast-links"><a href="https://www.imdb.com/name/nm1214509/" target="_blank">IMDB</a></div></div></div>
+            <div class="cast-card"><img src="Voelkel.jpg"><div class="cast-info"><p class="cast-role">Cristina</p><p class="cast-name">Riley Voelkel</p><div class="cast-links"><a href="https://www.instagram.com/lifeofrileyv/" target="_blank">IG</a><a href="https://www.imdb.com/name/nm3754272/" target="_blank">IMDB</a></div></div></div>
+            <div class="cast-card"><img src="ODonoghue.jpg"><div class="cast-info"><p class="cast-role">Cast</p><p class="cast-name">Becky O’Donohue</p><div class="cast-links"><a href="https://www.imdb.com/name/nm1659558/" target="_blank">IMDB</a></div></div></div>
+            <div class="cast-card"><img src="Voges.jpg"><div class="cast-info"><p class="cast-role">Cast</p><p class="cast-name">Torsten Voges</p><div class="cast-links"><a href="https://www.imdb.com/name/nm0901024/" target="_blank">IMDB</a></div></div></div>
+            <div class="cast-card"><img src="Dickson.jpg"><div class="cast-info"><p class="cast-role">Cast</p><p class="
