@@ -3,161 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SCRAMBLED - An omelet chef's shot at culinary greatness gets scrambled when his ex-best friend is released from prison. Coming 2026.">
     <title>SCRAMBLED | A Film by Frank Reina</title>
-    <meta name="description" content="An omelet chef's shot at culinary greatness gets scrambled when his ex-best friend—a chaotic ex-con with half a penis—is released from prison. Coming 2026.">
-    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
             font-family: 'League Spartan', sans-serif; 
-            background-color: #B9E9FF; /* Inviting Hugo Blue */
-            color: #fff; /* White text for A24 aesthetic */
-            line-height: 1.1;
+            background-color: #fff;
+            color: #000;
+            line-height: 1.5;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Hero - Minimalist & High Impact */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
-
-        h1 { 
-            font-size: clamp(4.5rem, 18vw, 12rem); 
-            font-weight: 900; 
-            letter-spacing: -6px; 
-            text-transform: uppercase;
-            line-height: 0.75;
-            margin-bottom: 30px;
-        }
-
-        .logline { 
-            font-size: 1.15rem; 
-            max-width: 750px; 
-            font-weight: 500;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            opacity: 0.9;
-        }
-
-        .release { 
-            font-weight: 900; 
-            letter-spacing: 10px; 
-            font-size: 1.4rem; 
-            text-transform: uppercase;
-        }
-
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px 100px; }
-
-        /* Trailer - A24 Presentation */
-        .video-wrapper { 
-            width: 100%; 
-            margin: 120px 0; 
-            box-shadow: 0 30px 80px rgba(0,0,0,0.15); 
-        }
-        .video-container { 
-            position: relative; 
-            padding-bottom: 56.25%; 
-            height: 0; 
-            background: #000; 
-        }
+        /* 1. Video Hero */
+        .video-hero { width: 100%; background: #000; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-        /* Seamless Cast Grid */
-        .section-header { 
-            font-weight: 900; 
-            font-size: 3.5rem; 
-            text-transform: uppercase; 
-            margin-bottom: 60px; 
-            text-align: center; 
-            letter-spacing: -2px; 
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+        /* 2. Title & 3. Logline */
+        .title-section { text-align: center; padding: 80px 20px 40px; }
+        h1 { font-size: clamp(3.5rem, 10vw, 7rem); font-weight: 900; letter-spacing: -4px; text-transform: uppercase; line-height: 0.8; margin-bottom: 30px; }
+        .logline { font-size: 1.1rem; max-width: 700px; margin: 0 auto 20px; font-weight: 400; line-height: 1.6; text-transform: uppercase; letter-spacing: 1px; }
+        .release { font-weight: 700; letter-spacing: 5px; font-size: 0.9rem; text-transform: uppercase; margin-top: 30px; }
+
+        /* 4. Poster Section */
+        .poster-section { text-align: center; padding: 60px 20px; }
+        .poster-section img { max-width: 500px; width: 100%; height: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
+
+        /* 5. Share Section */
+        .share-section { text-align: center; padding: 50px 20px; }
+        .share-section h3 { font-size: 0.8rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 25px; color: #888; }
+        .share-buttons { display: flex; justify-content: center; gap: 30px; }
+        .share-buttons a { color: #000; transition: opacity 0.3s; }
+        .share-buttons a:hover { opacity: 0.5; }
+        .share-buttons svg { width: 20px; height: 20px; fill: currentColor; }
+
+        /* 6. Divider */
+        .divider { width: 100%; height: 1px; background: #eee; margin: 40px auto; max-width: 1100px; }
+
+        /* 7. Cast Section */
+        .cast-section { padding: 60px 20px 100px; }
+        .section-header { font-weight: 900; font-size: 2rem; text-transform: uppercase; margin-bottom: 50px; text-align: center; letter-spacing: -1px; }
+        .cast-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
         
-        .cast-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 2px; 
-            background: #fff; 
-            border: 2px solid #fff;
-            margin-bottom: 140px;
-        }
-        
-        .cast-card { background: #B9E9FF; position: relative; overflow: hidden; aspect-ratio: 4/5; }
-        .cast-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s cubic-bezier(0.2, 0.1, 0.2, 1); }
+        .cast-card { position: relative; aspect-ratio: 4/5; background: #f9f9f9; overflow: hidden; }
+        .cast-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.2, 0, 0.2, 1); }
         .cast-card:hover img { transform: scale(1.05); }
         
-        .cast-info { 
-            position: absolute; bottom: 0; left: 0; width: 100%; padding: 35px; 
-            background: linear-gradient(transparent, rgba(0,0,0,0.95)); 
-        }
+        .cast-info { position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); color: #fff; text-align: left; }
+        .cast-role { font-size: 0.6rem; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.8; margin-bottom: 2px; }
+        .cast-name { font-weight: 700; font-size: 1rem; text-transform: uppercase; margin-bottom: 8px; }
+        .cast-links { display: flex; gap: 15px; }
+        .cast-links a { color: #fff; text-decoration: none; font-size: 0.65rem; font-weight: 900; text-transform: uppercase; border-bottom: 1px solid transparent; transition: border-color 0.3s; }
+        .cast-links a:hover { border-bottom: 1px solid #fff; }
+
+        /* 8. Footer Banner */
+        .footer-banner { background: #000; color: #fff; padding: 100px 40px; }
+        .footer-content { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: start; }
+        .footer-links { display: flex; flex-direction: column; gap: 15px; }
+        .footer-links a { color: #fff; text-decoration: none; font-weight: 700; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; transition: opacity 0.3s; }
+        .footer-links a:hover { opacity: 0.7; }
         
-        .cast-name { font-weight: 800; font-size: 1.6rem; text-transform: uppercase; margin-bottom: 5px; }
-        .cast-role { font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 18px; opacity: 0.75; text-transform: uppercase; }
-        .cast-links a { color: #fff; text-decoration: none; font-size: 0.8rem; margin-right: 25px; font-weight: 900; letter-spacing: 1.5px; }
-        .cast-links a:hover { opacity: 0.6; }
+        .footer-signup h3 { font-size: 1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+        .footer-form { display: flex; border: 1px solid #333; }
+        .footer-form input { padding: 18px; background: #000; border: 0; color: #fff; width: 100%; font-family: 'League Spartan'; font-size: 1rem; outline: none; }
+        .footer-form input::placeholder { color: #666; }
+        .footer-form button { background: #fff; color: #000; border: 0; padding: 0 35px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s; white-space: nowrap; font-family: 'League Spartan'; }
+        .footer-form button:hover { background: #ccc; }
 
-        /* Registration Box */
-        .register-box { 
-            background: rgba(255,255,255,0.08); 
-            padding: 100px 20px; 
-            text-align: center; 
-            margin-bottom: 140px; 
-            border-top: 1px solid rgba(255,255,255,0.1);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+        .footer-credits { text-align: center; margin-top: 80px; font-size: 0.7rem; letter-spacing: 3px; opacity: 0.5; text-transform: uppercase; line-height: 2; }
+        .footer-credits a { color: #fff; text-decoration: none; transition: opacity 0.3s; }
+        .footer-credits a:hover { opacity: 1; }
+
+        @media (max-width: 1200px) {
+            .cast-grid { grid-template-columns: repeat(3, 1fr); }
         }
-        .register-box h2 { font-weight: 900; text-transform: uppercase; margin-bottom: 40px; font-size: 2.5rem; letter-spacing: -1.5px; }
-        
-        .register-form { display: flex; justify-content: center; max-width: 600px; margin: 0 auto; background: #fff; padding: 5px; }
-        .register-form input { padding: 20px; border: 0; width: 100%; font-family: 'League Spartan'; font-weight: 700; font-size: 1.1rem; outline: none; color: #000; }
-        .register-form button { background: #000; color: #fff; border: 0; padding: 0 50px; font-weight: 900; cursor: pointer; text-transform: uppercase; letter-spacing: 3px; }
 
-        /* Small Classy Logo Buttons */
-        .social-btns { display: flex; justify-content: center; gap: 40px; margin-bottom: 80px; }
-        .social-btns img { height: 25px; width: auto; filter: invert(1); opacity: 0.7; transition: 0.4s; }
-        .social-btns img:hover { opacity: 1; transform: translateY(-5px); }
-
-        /* Footer */
-        .footer { 
-            text-align: center; 
-            padding: 140px 20px; 
-            font-size: 0.9rem; 
-            letter-spacing: 6px; 
-            text-transform: uppercase; 
-            border-top: 1px solid rgba(255,255,255,0.15); 
+        @media (max-width: 900px) {
+            .cast-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-content { grid-template-columns: 1fr; gap: 40px; }
         }
-        .footer a { color: #fff; text-decoration: none; font-weight: 900; }
-        .director-links { margin-top: 25px; display: flex; justify-content: center; gap: 30px; font-size: 0.75rem; letter-spacing: 3px; }
+
+        @media (max-width: 600px) {
+            h1 { letter-spacing: -2px; }
+            .logline { font-size: 0.95rem; letter-spacing: 0.5px; }
+            .cast-grid { gap: 15px; }
+            .footer-form { flex-direction: column; }
+            .footer-form button { padding: 18px; }
+        }
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <h1>SCRAMBLED</h1>
-        <p class="logline">An omelet chef's shot at culinary greatness gets scrambled when his ex-best friend—a chaotic ex-con with half a penis—is released from prison.</p>
-        <div class="release">COMING 2026</div>
+    <!-- 1. TRAILER -->
+    <section class="video-hero">
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/ex0a9rHFAa0" allowfullscreen title="Scrambled Movie Trailer"></iframe>
+        </div>
     </section>
 
     <div class="container">
-        <div class="video-wrapper">
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/ex0a9rHFAa0" allowfullscreen></iframe>
-            </div>
-        </div>
+        <!-- 2. TITLE & 3. LOGLINE -->
+        <section class="title-section">
+            <h1>SCRAMBLED</h1>
+            <p class="logline">An omelet chef's shot at culinary greatness gets scrambled when his ex-best friend—a chaotic ex-con with half a penis—is released from prison.</p>
+            <div class="release">COMING 2026</div>
+        </section>
 
+        <!-- 4. POSTER -->
+        <section class="poster-section">
+            <img src="poster.jpg" alt="Scrambled Movie Poster">
+        </section>
+
+        <!-- 5. SHARE -->
+        <section class="share-section">
+            <h3>SHARE</h3>
+            <div class="share-buttons">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.scrambledmovie.com" target="_blank" rel="noopener" aria-label="Share on Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="https://twitter.com/intent/tweet?url=https://www.scrambledmovie.com&text=Check%20out%20SCRAMBLED%20-%20Coming%202026" target="_blank" rel="noopener" aria-label="Share on Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="mailto:?subject=Check%20out%20SCRAMBLED&body=https://www.scrambledmovie.com" aria-label="Share by email">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- 6. DIVIDER -->
+    <div class="divider"></div>
+
+    <!-- 7. CAST -->
+    <section class="cast-section container">
         <h2 class="section-header">The Cast</h2>
         <div class="cast-grid">
-            <div class="cast-card"><img src="Hapka.jpg"><div class="cast-info"><p class="cast-role">Hugo</p><p class="cast-name">Mark Hapka</p><div class="cast-links"><a href="https://www.instagram.com/markhapka/" target="_blank">IG</a><a href="https://www.imdb.com/name/nm2639722/" target="_blank">IMDB</a></div></div></div>
-            <div class="cast-card"><img src="Shechori.jpg"><div class="cast-info"><p class="cast-role">Tonty</p><p class="cast-name">Tomer Shechori</p><div class="cast-links"><a href="https://tomer-shechori.com/biography/" target="_blank">BIO</a><a href="https://www.imdb.com/name/nm3028788/" target="_blank">IMDB</a></div></div></div>
-            <div class="cast-card"><img src="Julian.jpg"><div class="cast-info"><p class="cast-role">Viggo</p><p class="cast-name">Jose Julian</p><div class="cast-links"><a href="https://www.imdb.com/name/nm1214509/" target="_blank">IMDB</a></div></div></div>
-            <div class="cast-card"><img src="Voelkel.jpg"><div class="cast-info"><p class="cast-role">Cristina</p><p class="cast-name">Riley Voelkel</p><div class="cast-links"><a href="https://www.instagram.com/lifeofrileyv/" target="_blank">IG</a><a href="https://www.imdb.com/name/nm3754272/" target="_blank">IMDB</a></div></div></div>
-            <div class="cast-card"><img src="ODonoghue.jpg"><div class="cast-info"><p class="cast-role">Cast</p><p class="cast-name">Becky O’Donohue</p><div class="cast-links"><a href="https://www.imdb.com/name/nm1659558/" target="_blank">IMDB</a></div></div></div>
-            <div class="cast-card"><img src="Voges.jpg"><div class="cast-info"><p class="cast-role">Cast</p><p class="cast-name">Torsten Voges</p><div class="cast-links"><a href="https://www.imdb.com/name/nm0901024/" target="_blank">IMDB</a></div></div></div>
-            <div class="cast-card"><img src="Dickson.jpg"><div class="cast-info"><p class="cast-role">Cast</p><p class="
+            <div class="cast-card">
+                <img src="Hapka.jpg" alt="Mark Hapka as Hugo">
+                <div class="cast-info">
+                    <p class="cast-role">Hugo</p>
+                    <p class="cast-name">Mark Hapka</p>
+                    <div class="cast-links">
+                        <a href="https://www.instagram.com/markhapka/" target="_blank" rel="noopener">IG</a>
+                        <a href="https://www.imdb.com/name/nm2639722/" target="_blank" rel="noopener">IMDB</a>
+                    </div>
+                </div>
+            </div>
+            <div class="cast-card">
+                <img src="Shechori.jpg" alt="Tomer Shechori as Tonty">
+                <div class="cast-info">
+                    <p class="cast-role">Tonty</p>
+                    <p class="cast-name">Tomer Shechori</p>
+                    <div class="cast-links">
+                        <a href="https://tomer-shechori.com/biography/" target="_blank" rel="noopener">BIO</a>
+                        <a href="https://www.imdb.com/name/nm3028788/" target="_blank" rel="noopener">IMDB</a>
+                    </div>
+                </div>
+            </div>
+            <div class="cast-
