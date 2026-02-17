@@ -214,6 +214,14 @@
             border-bottom: 1px solid #E5E5E5;
         }
 
+        .synopsis-warning {
+            text-align: center;
+            font-size: 0.875rem;
+            font-style: italic;
+            color: #6B6B6B;
+            margin-bottom: 2rem;
+        }
+
         .synopsis-text {
             max-width: 850px;
             margin: 0 auto;
@@ -234,6 +242,66 @@
             max-width: 400px;
             width: 100%;
             box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        /* Director's Letter */
+        .directors-letter {
+            padding: 6rem 0;
+            background: #F9F9F9;
+            text-align: center;
+        }
+
+        .letter-button {
+            padding: 1rem 2.5rem;
+            background: #0A0A0A;
+            color: white;
+            border: none;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            font-weight: 500;
+        }
+
+        .letter-button:hover {
+            opacity: 0.8;
+        }
+
+        .letter-title {
+            text-align: center;
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            letter-spacing: 0.05em;
+            display: none;
+        }
+
+        .letter-content {
+            max-width: 750px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            font-weight: 300;
+            color: #2A2A2A;
+            display: none;
+            text-align: left;
+            margin-top: 3rem;
+        }
+
+        .letter-content.visible {
+            display: block;
+        }
+
+        .letter-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .letter-signature {
+            margin-top: 3rem;
+            text-align: right;
+            font-style: italic;
+            color: #6B6B6B;
         }
 
         /* Share */
@@ -488,8 +556,7 @@
 <body>
     <!-- Hero with Video -->
     <section class="hero">
-        <!-- Replace with your actual hero image or video -->
-        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920&h=1080&fit=crop" alt="SCRAMBLED" class="hero-video">
+        <img src="https://img.youtube.com/vi/ex0a9rHFAa0/maxresdefault.jpg" alt="SCRAMBLED" class="hero-video">
         <button class="play-overlay" onclick="openTrailer()"></button>
         <div class="hero-title-wrapper">
             <h1 class="hero-title">Scrambled</h1>
@@ -528,6 +595,7 @@
     <!-- Synopsis -->
     <section class="synopsis fade-in-section">
         <div class="container">
+            <p class="synopsis-warning">If you don't take comedy seriously, adjust your attention</p>
             <p class="synopsis-text">
                 An omelet chef's shot at culinary greatness gets scrambled when his ex-best friend — a chaotic ex-con with half a penis — is released from prison and drags him into a series of escalating situations that threaten to destroy his career, love life, and good decision making.
             </p>
@@ -537,8 +605,7 @@
     <!-- Poster -->
     <section class="poster-section fade-in-section">
         <div class="container">
-            <!-- Add your actual poster here -->
-            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500&h=750&fit=crop" alt="SCRAMBLED Poster" class="poster-image">
+            <img src="./poster_hugo.jpg" alt="SCRAMBLED Poster" class="poster-image">
         </div>
     </section>
 
@@ -567,7 +634,7 @@
             <div class="cast-grid">
                 <div class="cast-card">
                     <div class="cast-photo">
-                        <img src="./images/mark-hapka.jpg" alt="Mark Hapka">
+                        <img src="./Hapka.jpg" alt="Mark Hapka">
                     </div>
                     <div class="cast-name">Mark Hapka</div>
                     <div class="cast-role">
@@ -577,7 +644,7 @@
                 </div>
                 <div class="cast-card">
                     <div class="cast-photo">
-                        <img src="./images/jose-julian.jpg" alt="Jose Julian">
+                        <img src="./Julian.jpg" alt="Jose Julian">
                     </div>
                     <div class="cast-name">Jose Julian</div>
                     <div class="cast-role">
@@ -586,7 +653,7 @@
                 </div>
                 <div class="cast-card">
                     <div class="cast-photo">
-                        <img src="./images/riley-voelkel.jpg" alt="Riley Voelkel">
+                        <img src="./Voelkel.jpg" alt="Riley Voelkel">
                     </div>
                     <div class="cast-name">Riley Voelkel</div>
                     <div class="cast-role">
@@ -596,7 +663,7 @@
                 </div>
                 <div class="cast-card">
                     <div class="cast-photo">
-                        <img src="./images/tomer-shechori.jpg" alt="Tomer Shechori">
+                        <img src="./Shechori.jpg" alt="Tomer Shechori">
                     </div>
                     <div class="cast-name">Tomer Shechori</div>
                     <div class="cast-role">
@@ -606,7 +673,7 @@
                 </div>
                 <div class="cast-card">
                     <div class="cast-photo">
-                        <img src="./images/becky-odonohue.jpg" alt="Becky O'Donohue">
+                        <img src="./O'Donohue.jpg" alt="Becky O'Donohue">
                     </div>
                     <div class="cast-name">Becky O'Donohue</div>
                     <div class="cast-role">
@@ -615,7 +682,7 @@
                 </div>
                 <div class="cast-card">
                     <div class="cast-photo">
-                        <img src="./images/chi-nnadi.jpg" alt="Chi Nnadi">
+                        <img src="./Nnadi.jpg" alt="Chi Nnadi">
                     </div>
                     <div class="cast-name">Chi Nnadi</div>
                     <div class="cast-role">
@@ -625,7 +692,7 @@
                 </div>
                 <div class="cast-card">
                     <div class="cast-photo">
-                        <img src="./images/torsten-voges.jpg" alt="Torsten Voges">
+                        <img src="./Voges.jpg" alt="Torsten Voges">
                     </div>
                     <div class="cast-name">Torsten Voges</div>
                     <div class="cast-role">
@@ -634,13 +701,55 @@
                 </div>
                 <div class="cast-card">
                     <div class="cast-photo">
-                        <img src="./images/neil-dickson.jpg" alt="Neil Dickson">
+                        <img src="./Dickson.jpg" alt="Neil Dickson">
                     </div>
                     <div class="cast-name">Neil Dickson</div>
                     <div class="cast-role">
                         <a href="https://www.instagram.com/dicksonneil/" target="_blank" style="margin-right:8px">IG</a>
                         <a href="https://www.imdb.com/name/nm0225698/" target="_blank">IMDb</a>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Director's Letter -->
+    <section class="directors-letter fade-in-section">
+        <div class="container">
+            <button class="letter-button" onclick="toggleLetter()">Read The Scrambled Letter</button>
+            <h2 class="letter-title" id="letter-title">The Scrambled Letter</h2>
+            <div class="letter-content" id="letter-content">
+                <p>Making this movie almost killed me. My producer died. My production attorney died. My lead actor, Tomer Shechori died. After production.</p>
+
+                <p>I wear an opal ring to remind myself: I owe them this.</p>
+
+                <p>I shot Scrambled in 2012, when Obama was president and 'The Dark Knight Rises' ruled the summer box office.</p>
+
+                <p>My lead actor dropped out the day before production. We shot for three days without a protagonist. I was this close to getting ready to sling omelettes in front of the camera.</p>
+
+                <p>I recut it. Recomposed the score. Got rejected from every major and minor festival.</p>
+
+                <p>They said it was too immature. Too offensive. Too cartoonish.</p>
+
+                <p>They were right.</p>
+
+                <p>This is a comedy written from the perspective of a 20-something man-child who thinks omelettes are philosophy and betrayal is a juicy punchline. It's messy, juvenile, and over-the-top — because that's what immaturity is.</p>
+
+                <p>I wrote it after a brutal breakup, channeling all my rage, enthusiasm, and confusion into a screwball scenario where egg whites = self-worth and loyalty = crime. It's 'Animal House' meets 'South Park' meets a Pedro Almodóvar fever dream. It takes serious themes — best friendship, brotherhood, masculinity, relationships – and spins them absurd.</p>
+
+                <p>Because here's the twist: With increasing immaturity comes unlimited confidence. You attempt things that mature people would never risk. You fail spectacularly. You learn. You grow. But first, you have to play.</p>
+
+                <p>I love omelettes. I love Anthony Bourdain's idea that food brings people together. There aren't many omelette movies, so I made one. It's about a guy who's really good at eggs and really bad at life, and the ex-best friend who all he wants is to be legit BFFs again.</p>
+
+                <p>It's ridiculous. It's sincere. It's scrambled.</p>
+
+                <p>I hope you laugh. I hope you share it with friends who appreciate dangerous comedy. I hope Tomer, Ric, and David are watching somewhere, shaking their heads, knowing it was worth it.</p>
+
+                <p>Best friendships never die.</p>
+
+                <div class="letter-signature">
+                    FJR<br><br>
+                    -- Writer/ Director/ Omeletteer
                 </div>
             </div>
         </div>
@@ -732,6 +841,23 @@
         document.querySelectorAll('.fade-in-section').forEach(section => {
             observer.observe(section);
         });
+
+        // Toggle director's letter
+        function toggleLetter() {
+            const content = document.getElementById('letter-content');
+            const title = document.getElementById('letter-title');
+            const button = document.querySelector('.letter-button');
+
+            if (content.classList.contains('visible')) {
+                content.classList.remove('visible');
+                title.style.display = 'none';
+                button.textContent = 'Read The Scrambled Letter';
+            } else {
+                content.classList.add('visible');
+                title.style.display = 'block';
+                button.textContent = 'Close';
+            }
+        }
     </script>
 </body>
 </html>
