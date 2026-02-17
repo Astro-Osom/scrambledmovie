@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCRAMBLED | A Movie by Frank Reina</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Helvetica Neue', Arial, sans-serif; 
+            background-color: #B9E9FF; 
+            color: #111; 
+            line-height: 1.6; 
+        }
+
+        .hero { padding: 80px 20px; text-align: center; }
+
+        h1 { 
+            font-size: clamp(3rem, 12vw, 7rem); 
+            font-weight: 900; 
+            letter-spacing: -2px; 
+            margin-bottom: 10px; 
+            color: #000;
+        }
+
+        .tagline { 
+            font-size: 1.2rem; 
+            max-width: 700px; 
+            margin: 0 auto 30px; 
+            color: #333; 
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+
+        .video-container { 
+            position: relative; 
+            padding-bottom: 56.25%; 
+            height: 0; 
+            margin-bottom: 50px; 
+            background: #000; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        .poster-gallery { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 30px; 
+            margin-bottom: 60px; 
+        }
+        .poster-gallery img { 
+            width: 100%; 
+            max-width: 450px; 
+            border: 8px solid #fff; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+        }
+
+        .links-section { text-align: center; padding: 40px; background: rgba(255,255,255,0.4); }
+        .btn { 
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 30px; 
+            background: #000; 
+            color: #fff; 
+            text-decoration: none; 
+            font-weight: bold; 
+            border-radius: 5px;
+        }
+
+        .footer { text-align: center; padding: 60px; font-size: 0.8rem; color: #555; }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1>SCRAMBLED</h1>
+        <p class="tagline">A movie comedy about the man who makes the best egg white omelets and the chaos that gets in his way of his culinary creations.</p>
+        <p style="font-weight: bold; font-size: 1.3rem;">COMING 2026</p>
+    </section>
+
+    <div class="container">
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/ex0a9rHFAa0" allowfullscreen></iframe>
+        </div>
+
+        <div class="poster-gallery">
+            <img src="Yelim Kim Hugo FINAL.jpg" alt="Scrambled Hugo Poster">
+            <img src="Scrambled_Poster_V5_Purple_Cast.jpg" alt="Scrambled Cast Poster">
+        </div>
+    </div>
+
+    <section class="links-section">
+        <a href="https://www.imdb.com/title/tt2447742/" target="_blank" class="btn">IMDb PAGE</a>
+        <a href="https://www.facebook.com/Scrambledfilm/" target="_blank" class="btn">FACEBOOK</a>
+        <a href="mailto:info@scrambledmovie.com" class="btn">INQUIRIES</a>
+    </section>
+
+    <footer class="footer">
+        CREATED BY FRANK REINA | PRODUCED BY ROBERT A. STONE <br>
+        &copy; 2026 SCRAMBLED MOVIE
+    </footer>
+
+</body>
+</html>
