@@ -3,107 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SCRAMBLED | A Movie by Frank Reina</title>
+    <title>SCRAMBLED | A Film by Frank Reina</title>
+    <meta name="description" content="An omelet chef's shot at culinary greatness gets scrambled when his ex-best friend—a chaotic ex-con with half a penis—is released from prison. Coming 2026.">
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        /* Light blue background inspired by the Hugo poster */
         body { 
-            font-family: 'Helvetica Neue', Arial, sans-serif; 
-            background-color: #B9E9FF; 
-            color: #111; 
-            line-height: 1.6; 
+            font-family: 'League Spartan', sans-serif; 
+            background-color: #B9E9FF; /* Inviting Hugo Blue */
+            color: #fff; /* White text per instructions */
+            line-height: 1.1;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
+        /* A24/Beau Minimalist Hero */
         .hero {
-            padding: 80px 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            padding: 20px;
         }
 
         h1 { 
-            font-size: clamp(3.5rem, 12vw, 7rem); 
+            font-size: clamp(4.5rem, 18vw, 12rem); 
             font-weight: 900; 
-            letter-spacing: -2px; 
-            margin-bottom: 10px; 
-            color: #000;
+            letter-spacing: -6px; 
+            text-transform: uppercase;
+            line-height: 0.75;
+            margin-bottom: 30px;
         }
 
-        .tagline { 
-            font-size: 1.2rem; 
-            max-width: 700px; 
-            margin: 0 auto 30px; 
-            color: #333; 
+        .logline { 
+            font-size: 1.15rem; 
+            max-width: 750px; 
+            font-weight: 500;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0.9;
         }
 
-        .container { 
-            max-width: 1100px; 
-            margin: 0 auto; 
-            padding: 20px; 
+        .release { 
+            font-weight: 900; 
+            letter-spacing: 10px; 
+            font-size: 1.4rem; 
+            text-transform: uppercase;
         }
 
-        /* Trailer Section */
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px 100px; }
+
+        /* Trailer Section - Soft tightened shadows */
+        .video-wrapper { 
+            width: 100%; 
+            margin: 120px 0; 
+            box-shadow: 0 30px 80px rgba(0,0,0,0.15); 
+        }
         .video-container { 
             position: relative; 
             padding-bottom: 56.25%; 
             height: 0; 
-            margin-bottom: 50px; 
             background: #000; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
         }
         .video-container iframe { 
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; 
         }
 
-        /* Posters Section */
-        .poster-gallery { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 30px; 
+        /* Seamless Cast Grid */
+        .section-header { 
+            font-weight: 900; 
+            font-size: 3.5rem; 
+            text-transform: uppercase; 
             margin-bottom: 60px; 
-        }
-        .poster-gallery img { 
-            width: 100%; 
-            max-width: 480px; 
-            border: 8px solid #fff; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-        }
-
-        /* Social/Links Section */
-        .links-section { 
             text-align: center; 
-            padding: 60px 20px; 
-            background: rgba(255,255,255,0.3); 
+            letter-spacing: -2px; 
         }
-        .btn { 
-            display: inline-block;
-            margin: 10px;
-            padding: 15px 35px; 
-            background: #000; 
+        
+        .cast-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 2px; 
+            background: #fff; 
+            border: 2px solid #fff;
+            margin-bottom: 140px;
+        }
+        
+        .cast-card { 
+            background: #B9E9FF; 
+            position: relative; 
+            overflow: hidden; 
+            aspect-ratio: 4/5; 
+        }
+        
+        .cast-card img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: 0.8s cubic-bezier(0.2, 0.1, 0.2, 1); 
+        }
+        
+        .cast-card:hover img { transform: scale(1.05); }
+        
+        .cast-info { 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            padding: 35px; 
+            background: linear-gradient(transparent, rgba(0,0,0,0.95)); 
+        }
+        
+        .cast-name { font-weight: 800; font-size: 1.6rem; text-transform: uppercase; margin-bottom: 5px; }
+        .cast-role { font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 18px; opacity: 0.75; text-transform: uppercase; }
+        
+        .cast-links a { 
             color: #fff; 
             text-decoration: none; 
-            font-weight: bold; 
-            border-radius: 5px;
-            letter-spacing: 1px;
-            transition: transform 0.2s;
-        }
-        .btn:hover { transform: scale(1.05); background: #222; }
-
-        .footer { 
-            text-align: center; 
-            padding: 60px; 
             font-size: 0.8rem; 
-            color: #555; 
-            letter-spacing: 1px;
+            margin-right: 25px; 
+            font-weight: 900; 
+            letter-spacing: 1.5px; 
+            border-bottom: 1px solid transparent; 
         }
-    </style>
-</head>
-<body>
+        .cast-links a:hover { border-bottom: 1px solid #fff; }
 
-    <section class="hero">
-        <h1>SCRAMBLED</h1>
-        <p class="tagline">A movie comedy about the man who makes the best egg white omelets and the chaos that gets in his way of his culinary creations.</p>
-        <p style="font-weight: bold; font-size: 1.4rem; letter-spacing: 2px;">COMING 2026</p>
-    </section>
+        /* Registration Box */
+        .register-box { 
+            background: rgba(255,255,255,0.08); 
+            padding: 100px 20px; 
+            text-align: center; 
+            margin-bottom: 140px; 
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .register-box h2 { font-weight: 900; text-transform: uppercase; margin-bottom: 40px; font-size: 2.5rem; letter-spacing: -1.5px; }
+        
+        .register-form { 
+            display: flex; 
+            justify-content: center; 
+            max-width: 600px; 
+            margin: 0 auto; 
+            background: #fff;
+            padding: 5px;
+        }
+        .register-form input { 
+            padding: 20px; 
+            border: 0; 
+            width: 100%; 
+            font-family: 'League Spartan'; 
+            font-weight: 700; 
+            font-size: 1.1rem;
+            outline: none;
+            color: #000;
+        }
+        .register-form button { 
+            background: #000; 
+            color: #fff; 
+            border: 0; 
+            padding: 0 50px; 
+            font-weight: 900; 
+            cursor: pointer; 
+            text-transform: uppercase; 
+            letter-spacing: 3px;
+            transition: 0.4s;
+        }
+        .register-form button:hover { background: #333; }
 
-    <div class="
+        /* Logos Section */
+        .social-btns { 
+            display: flex; 
+            justify-content: center; 
+            gap: 50px; 
+            margin-bottom: 80px; 
+        }
+        .social-btns img { 
+            height: 30px; 
+            width: auto;
