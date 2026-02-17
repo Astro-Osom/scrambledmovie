@@ -201,6 +201,81 @@
             opacity: 0.6;
         }
 
+        .metadata-value a {
+            cursor: pointer;
+        }
+
+        /* Bio Modal */
+        .bio-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .bio-modal.active {
+            display: flex;
+        }
+
+        .bio-modal-content {
+            background: white;
+            padding: 3rem;
+            max-width: 700px;
+            width: 100%;
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .bio-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            color: #0A0A0A;
+        }
+
+        .bio-modal-close:hover {
+            opacity: 0.6;
+        }
+
+        .bio-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .bio-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #2A2A2A;
+        }
+
+        .bio-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .bio-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 2rem auto;
+            display: block;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
         .cast-list {
             display: flex;
             flex-direction: column;
@@ -374,6 +449,21 @@
             color: #6B6B6B;
             overflow: hidden;
             cursor: pointer;
+            position: relative;
+        }
+
+        .character-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
         }
 
         .cast-photo img {
@@ -456,7 +546,9 @@
 
         .newsletter-form {
             display: flex;
-            gap: 0.5rem;
+            flex-direction: column;
+            gap: 0.75rem;
+            max-width: 400px;
         }
 
         .newsletter-input {
@@ -465,7 +557,7 @@
             background: transparent;
             color: white;
             font-size: 0.875rem;
-            min-width: 250px;
+            width: 100%;
         }
 
         .newsletter-input::placeholder {
@@ -571,6 +663,27 @@
         </div>
     </div>
 
+    <!-- Bio Modal -->
+    <div class="bio-modal" id="bio-modal">
+        <div class="bio-modal-content">
+            <button class="bio-modal-close" onclick="closeBio()">&times;</button>
+            <h2 class="bio-title">Frank Reina</h2>
+            <img src="./Reina.jpg" alt="Frank Reina" class="bio-image">
+            <div class="bio-text">
+                <p>Frank Reina was born in San Juan, Puerto Rico, and forged his craft alongside Hollywood's biggest productions and luminaries. He worked with legendary producer Robert Evans (Chinatown), and on Christopher Nolan's Interstellar and The Dark Knight Rises as a production assistant. He also served as the right-hand man to action maestro Spiro Razatos (Fast & Furious franchise).</p>
+
+                <p>His credits span over 20 major studio films, including Captain America: Civil War, F9: The Fast Saga, Bad Boys for Life, Venom, and the Coen Bros.' Hail, Caesar! He wrote and directed Scrambled, a comic romp described as "a cross between South Park and Almodóvar", along with the short films Shit!, White Shark, Star Tails, and Key Nuts.</p>
+
+                <p>His next project, Future Vibrant Self, follows one man's unraveling and reinvention across book, film, and digital experience — a cross-media exploration of personal transformation.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
+        <source src="./Flamenco Legend Music.mp3" type="audio/mpeg">
+    </audio>
+
     <!-- Metadata -->
     <section class="metadata fade-in-section">
         <div class="container">
@@ -578,7 +691,7 @@
                 <div>
                     <div class="metadata-label">Written & Directed By</div>
                     <div class="metadata-value">
-                        <a href="https://www.instagram.com/frankjreina/" target="_blank">Frank Reina</a>
+                        <a href="javascript:void(0)" onclick="openBio()" style="cursor:pointer">Frank Reina</a>
                     </div>
                 </div>
                 <div class="metadata-tagline">
@@ -597,7 +710,7 @@
         <div class="container">
             <p class="synopsis-warning">If you don't take comedy seriously, adjust your attention</p>
             <p class="synopsis-text">
-                An omelet chef's shot at culinary greatness gets scrambled when his ex-best friend — a chaotic ex-con with half a penis — is released from prison and drags him into a series of escalating situations that threaten to destroy his career, love life, and good decision making.
+                An omelet chef's shot at culinary greatness gets scrambled when his ex-best friend — a chaotic ex-con with half a manhood  — is released from prison and drags him into a series of escalating situations that threaten to destroy his career, love life, and good decision making.
             </p>
         </div>
     </section>
@@ -635,6 +748,7 @@
                 <div class="cast-card">
                     <div class="cast-photo">
                         <img src="./Hapka.jpg" alt="Mark Hapka">
+                        <div class="character-name">HUGO</div>
                     </div>
                     <div class="cast-name">Mark Hapka</div>
                     <div class="cast-role">
@@ -645,6 +759,7 @@
                 <div class="cast-card">
                     <div class="cast-photo">
                         <img src="./Julian.jpg" alt="Jose Julian">
+                        <div class="character-name">VIGGO</div>
                     </div>
                     <div class="cast-name">Jose Julian</div>
                     <div class="cast-role">
@@ -654,6 +769,7 @@
                 <div class="cast-card">
                     <div class="cast-photo">
                         <img src="./Voelkel.jpg" alt="Riley Voelkel">
+                        <div class="character-name">CRISTINA</div>
                     </div>
                     <div class="cast-name">Riley Voelkel</div>
                     <div class="cast-role">
@@ -664,6 +780,7 @@
                 <div class="cast-card">
                     <div class="cast-photo">
                         <img src="./Shechori.jpg" alt="Tomer Shechori">
+                        <div class="character-name">TONTY</div>
                     </div>
                     <div class="cast-name">Tomer Shechori</div>
                     <div class="cast-role">
@@ -674,6 +791,7 @@
                 <div class="cast-card">
                     <div class="cast-photo">
                         <img src="./ODonohue.jpg" alt="Becky O'Donohue">
+                        <div class="character-name">GIAVANNA</div>
                     </div>
                     <div class="cast-name">Becky O'Donohue</div>
                     <div class="cast-role">
@@ -683,6 +801,7 @@
                 <div class="cast-card">
                     <div class="cast-photo">
                         <img src="./Nnadi.jpg" alt="Chi Nnadi">
+                        <div class="character-name">TANNER</div>
                     </div>
                     <div class="cast-name">Chi Nnadi</div>
                     <div class="cast-role">
@@ -693,6 +812,7 @@
                 <div class="cast-card">
                     <div class="cast-photo">
                         <img src="./Voges.jpg" alt="Torsten Voges">
+                        <div class="character-name">KARL AIDELL</div>
                     </div>
                     <div class="cast-name">Torsten Voges</div>
                     <div class="cast-role">
@@ -702,6 +822,7 @@
                 <div class="cast-card">
                     <div class="cast-photo">
                         <img src="./Dickson.jpg" alt="Neil Dickson">
+                        <div class="character-name">ROMAN</div>
                     </div>
                     <div class="cast-name">Neil Dickson</div>
                     <div class="cast-role">
@@ -765,8 +886,12 @@
                     <a href="https://www.instagram.com/frankjreina/" target="_blank" class="footer-link">Instagram</a>
                     <a href="https://www.youtube.com/@FrankjReina" target="_blank" class="footer-link">YouTube</a>
                 </div>
-                <form class="newsletter-form" onsubmit="handleNewsletter(event)">
-                    <input type="email" class="newsletter-input" placeholder="Email for updates" required>
+                <form class="newsletter-form" action="https://formspree.io/f/xaqdjgje" method="POST">
+                    <input type="text" name="firstName" class="newsletter-input" placeholder="First name" required>
+                    <input type="text" name="lastName" class="newsletter-input" placeholder="Last name" required>
+                    <input type="email" name="email" class="newsletter-input" placeholder="Email" required>
+                    <input type="hidden" name="_subject" value="New SCRAMBLED Newsletter Signup">
+                    <input type="hidden" name="_next" value="https://www.scrambledmovie.com/?subscribed=true">
                     <button type="submit" class="newsletter-submit">Subscribe</button>
                 </form>
             </div>
@@ -818,12 +943,6 @@
             }
         }
 
-        function handleNewsletter(e) {
-            e.preventDefault();
-            alert('Thanks for subscribing!');
-            e.target.reset();
-        }
-
         // Fade-in animations on scroll
         const observerOptions = {
             threshold: 0.1,
@@ -858,6 +977,51 @@
                 button.textContent = 'Close';
             }
         }
+
+        // Bio modal functions
+        function openBio() {
+            const modal = document.getElementById('bio-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBio() {
+            const modal = document.getElementById('bio-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeBio();
+            }
+        });
+
+        document.getElementById('bio-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeBio();
+        });
+
+        // Background music control
+        const bgMusic = document.getElementById('bg-music');
+
+        // Play music on first user interaction
+        document.addEventListener('click', function playMusic() {
+            bgMusic.play().catch(e => console.log('Audio play prevented:', e));
+            document.removeEventListener('click', playMusic);
+        }, { once: true });
+
+        // Pause music when trailer opens, resume when it closes
+        const originalOpenTrailer = openTrailer;
+        window.openTrailer = function() {
+            bgMusic.pause();
+            originalOpenTrailer();
+        };
+
+        const originalCloseTrailer = closeTrailer;
+        window.closeTrailer = function() {
+            originalCloseTrailer();
+            bgMusic.play().catch(e => console.log('Audio play prevented:', e));
+        };
     </script>
 </body>
 </html>
