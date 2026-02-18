@@ -325,6 +325,7 @@
 
         .easter-egg-image {
             width: 100%;
+            max-width: 400px;
             height: auto;
             box-shadow: 0 10px 40px rgba(0,0,0,0.3);
         }
@@ -439,18 +440,13 @@
         }
 
         /* Coming Soon */
-        .coming-soon {
-            padding: 2rem 0;
-            text-align: center;
-            border-bottom: 1px solid #E5E5E5;
-        }
-
         .coming-soon-text {
             font-size: 1.25rem;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: #0A0A0A;
+            margin-bottom: 2rem;
         }
 
         /* Share */
@@ -821,16 +817,10 @@
         </div>
     </section>
 
-    <!-- Coming Soon -->
-    <section class="coming-soon fade-in-section">
-        <div class="container">
-            <div class="coming-soon-text">Coming Soon</div>
-        </div>
-    </section>
-
     <!-- Share -->
     <section class="share fade-in-section">
         <div class="container">
+            <div class="coming-soon-text">Coming Soon</div>
             <div class="share-label">Share</div>
             <div class="share-icons">
                 <svg class="share-icon" onclick="shareOn('facebook')" viewBox="0 0 24 24" fill="currentColor">
