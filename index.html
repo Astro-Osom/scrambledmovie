@@ -171,6 +171,12 @@
             font-style: italic;
             color: #9B9B9B;
             letter-spacing: 0.03em;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .metadata-tagline:hover {
+            opacity: 0.6;
         }
 
         .metadata-label {
@@ -276,6 +282,53 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
+        /* Easter Egg Modal */
+        .easter-egg-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .easter-egg-modal.active {
+            display: flex;
+        }
+
+        .easter-egg-content {
+            position: relative;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .easter-egg-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .easter-egg-close:hover {
+            opacity: 0.7;
+        }
+
+        .easter-egg-image {
+            width: 100%;
+            height: auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
         .cast-list {
             display: flex;
             flex-direction: column;
@@ -295,6 +348,12 @@
             font-style: italic;
             color: #6B6B6B;
             margin-bottom: 2rem;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .synopsis-warning:hover {
+            opacity: 0.6;
         }
 
         .synopsis-text {
@@ -377,6 +436,21 @@
             text-align: right;
             font-style: italic;
             color: #6B6B6B;
+        }
+
+        /* Coming Soon */
+        .coming-soon {
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 1px solid #E5E5E5;
+        }
+
+        .coming-soon-text {
+            font-size: 1.25rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #0A0A0A;
         }
 
         /* Share */
@@ -462,6 +536,17 @@
             letter-spacing: 0.05em;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
             z-index: 10;
+        }
+
+        .character-name.right {
+            left: auto;
+            right: 1rem;
+        }
+
+        .character-name.stacked {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
         }
 
         .cast-photo img {
@@ -682,6 +767,22 @@
         <source src="./Flamenco Legend Music.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- Easter Egg Modal - BFF -->
+    <div class="easter-egg-modal" id="easter-egg-bff">
+        <div class="easter-egg-content">
+            <button class="easter-egg-close" onclick="closeEasterEgg('bff')">&times;</button>
+            <img src="./Tao_BFF_logo.jpg" alt="Best Friends Forever" class="easter-egg-image">
+        </div>
+    </div>
+
+    <!-- Easter Egg Modal - Tonty -->
+    <div class="easter-egg-modal" id="easter-egg-tonty">
+        <div class="easter-egg-content">
+            <button class="easter-egg-close" onclick="closeEasterEgg('tonty')">&times;</button>
+            <img src="./poster_Tonty.jpg" alt="Tonty Poster" class="easter-egg-image">
+        </div>
+    </div>
+
     <!-- Metadata -->
     <section class="metadata fade-in-section">
         <div class="container">
@@ -692,7 +793,7 @@
                         <a href="javascript:void(0)" onclick="openBio()" style="cursor:pointer">Frank Reina</a>
                     </div>
                 </div>
-                <div class="metadata-tagline">
+                <div class="metadata-tagline" onclick="openEasterEgg('bff')">
                     Best friendships never die
                 </div>
                 <div class="metadata-right">
@@ -706,7 +807,7 @@
     <!-- Synopsis -->
     <section class="synopsis fade-in-section">
         <div class="container">
-            <p class="synopsis-warning">If you don't take comedy seriously, adjust your attention</p>
+            <p class="synopsis-warning" onclick="openEasterEgg('tonty')">If you don't take comedy seriously, adjust your attention</p>
             <p class="synopsis-text">
                 An omelet chef's shot at culinary greatness gets scrambled when his ex-best friend — a chaotic ex-con with half a manhood — is released from prison and drags him into a series of escalating situations that threaten to destroy his career, love life, and good decision making.
             </p>
@@ -717,6 +818,13 @@
     <section class="poster-section fade-in-section">
         <div class="container">
             <img src="./poster_hugo.jpg" alt="SCRAMBLED Poster" class="poster-image">
+        </div>
+    </section>
+
+    <!-- Coming Soon -->
+    <section class="coming-soon fade-in-section">
+        <div class="container">
+            <div class="coming-soon-text">Coming Soon</div>
         </div>
     </section>
 
@@ -799,7 +907,7 @@
                 <div class="cast-card">
                     <div class="cast-photo">
                         <img src="./Nnadi.jpg" alt="Chi Nnadi">
-                        <div class="character-name">TANNER</div>
+                        <div class="character-name right">TANNER</div>
                     </div>
                     <div class="cast-name">Chi Nnadi</div>
                     <div class="cast-role">
@@ -810,7 +918,10 @@
                 <div class="cast-card">
                     <div class="cast-photo">
                         <img src="./Voges.jpg" alt="Torsten Voges">
-                        <div class="character-name">KARL AIDELL</div>
+                        <div class="character-name right stacked">
+                            <span>KARL</span>
+                            <span>AIDELL</span>
+                        </div>
                     </div>
                     <div class="cast-name">Torsten Voges</div>
                     <div class="cast-role">
@@ -894,7 +1005,7 @@
                 </form>
             </div>
             <div class="copyright">
-                © 2025 SCRAMBLED. All Rights Reserved.
+                © 2026 SCRAMBLED. All Rights Reserved.
             </div>
         </div>
     </footer>
@@ -1020,6 +1131,36 @@
             originalCloseTrailer();
             bgMusic.play().catch(e => console.log('Audio play prevented:', e));
         };
+
+        // Easter egg modal functions
+        function openEasterEgg(type) {
+            const modal = document.getElementById(`easter-egg-${type}`);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEasterEgg(type) {
+            const modal = document.getElementById(`easter-egg-${type}`);
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close easter eggs on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeEasterEgg('bff');
+                closeEasterEgg('tonty');
+            }
+        });
+
+        // Close easter eggs on backdrop click
+        document.getElementById('easter-egg-bff').addEventListener('click', function(e) {
+            if (e.target === this) closeEasterEgg('bff');
+        });
+
+        document.getElementById('easter-egg-tonty').addEventListener('click', function(e) {
+            if (e.target === this) closeEasterEgg('tonty');
+        });
     </script>
 </body>
 </html>
