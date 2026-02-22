@@ -2,1155 +2,723 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SCRAMBLED - A Film by Frank Reina</title>
-    <meta name="description" content="Best friendships never die">
-
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="SCRAMBLED - Official Website">
-    <meta property="og:description" content="Best friendships never die">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.scrambledmovie.com">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Dante's Rings: The Dream World Journey</title>
+    
+    <link rel="apple-touch-icon" href="Dante_App_Logo.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #FFFFFF;
-            color: #0A0A0A;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Hero Section with Video */
-        .hero {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            background: #000;
-            display: flex;
-            align-items: flex-end;
-        }
-
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.85;
-        }
-
-        .play-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background: rgba(255,255,255,0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: none;
-        }
-
-        .play-overlay:hover {
-            background: white;
-            transform: translate(-50%, -50%) scale(1.1);
-        }
-
-        .play-overlay::after {
-            content: '';
-            width: 0;
-            height: 0;
-            border-left: 20px solid #0A0A0A;
-            border-top: 12px solid transparent;
-            border-bottom: 12px solid transparent;
-            margin-left: 5px;
-        }
-
-        .hero-title-wrapper {
-            position: relative;
-            z-index: 10;
-            padding: 4rem;
-        }
-
-        .hero-title {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 700;
-            color: white;
-            line-height: 0.9;
-            letter-spacing: -0.02em;
-        }
-
-        /* Video Modal */
-        .video-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-
-        .video-modal.active {
-            display: flex;
-        }
-
-        .video-modal-content {
-            position: relative;
-            width: 100%;
-            max-width: 1200px;
-            aspect-ratio: 16/9;
-        }
-
-        .video-modal-close {
-            position: absolute;
-            top: -50px;
-            right: 0;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            transition: opacity 0.3s;
-        }
-
-        .video-modal-close:hover {
-            opacity: 0.7;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Metadata Section */
-        .metadata {
-            padding: 4rem 0;
-            border-bottom: 1px solid #E5E5E5;
-        }
-
-        .metadata-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .metadata-tagline {
-            text-align: center;
-            font-size: 0.95rem;
-            font-weight: 400;
-            font-style: italic;
-            color: #9B9B9B;
-            letter-spacing: 0.03em;
-            cursor: pointer;
-            transition: opacity 0.3s;
-        }
-
-        .metadata-tagline:hover {
-            opacity: 0.6;
-        }
-
-        .metadata-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: #6B6B6B;
-            margin-bottom: 0.75rem;
-        }
-
-        .metadata-value {
-            font-size: 1.25rem;
-            font-weight: 400;
-            line-height: 1.4;
-        }
-
-        .metadata-right {
-            text-align: right;
-        }
-
-        .metadata-value a {
-            color: #0A0A0A;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .metadata-value a:hover {
-            opacity: 0.6;
-        }
-
-        .metadata-value a {
-            cursor: pointer;
-        }
-
-        /* Bio Modal */
-        .bio-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-
-        .bio-modal.active {
-            display: flex;
-        }
-
-        .bio-modal-content {
-            background: white;
-            padding: 3rem;
-            max-width: 700px;
-            width: 100%;
-            position: relative;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .bio-modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            background: none;
-            border: none;
-            font-size: 2rem;
-            cursor: pointer;
-            transition: opacity 0.3s;
-            color: #0A0A0A;
-        }
-
-        .bio-modal-close:hover {
-            opacity: 0.6;
-        }
-
-        .bio-title {
-            font-size: 1.75rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-
-        .bio-text {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            color: #2A2A2A;
-        }
-
-        .bio-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .bio-image {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 2rem auto;
-            display: block;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        /* Easter Egg Modal */
-        .easter-egg-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-
-        .easter-egg-modal.active {
-            display: flex;
-        }
-
-        .easter-egg-content {
-            position: relative;
-            max-width: 800px;
-            width: 100%;
-        }
-
-        .easter-egg-close {
-            position: absolute;
-            top: -50px;
-            right: 0;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            transition: opacity 0.3s;
-        }
-
-        .easter-egg-close:hover {
-            opacity: 0.7;
-        }
-
-        .easter-egg-image {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        }
-
-        .cast-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        /* Synopsis */
-        .synopsis {
-            padding: 4rem 0;
-            text-align: center;
-            border-bottom: 1px solid #E5E5E5;
-        }
-
-        .synopsis-warning {
-            text-align: center;
-            font-size: 0.875rem;
-            font-style: italic;
-            color: #6B6B6B;
-            margin-bottom: 2rem;
-            cursor: pointer;
-            transition: opacity 0.3s;
-        }
-
-        .synopsis-warning:hover {
-            opacity: 0.6;
-        }
-
-        .synopsis-text {
-            max-width: 850px;
-            margin: 0 auto;
-            font-size: 1.25rem;
-            line-height: 1.8;
-            font-weight: 300;
-            letter-spacing: 0.01em;
-        }
-
-        /* Poster */
-        .poster-section {
-            padding: 6rem 0;
-            text-align: center;
-            border-bottom: 1px solid #E5E5E5;
-        }
-
-        .poster-image {
-            max-width: 400px;
-            width: 100%;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-        }
-
-        /* Director's Letter */
-        .directors-letter {
-            padding: 6rem 0;
-            background: #F9F9F9;
-            text-align: center;
-        }
-
-        .letter-button {
-            padding: 1rem 2.5rem;
-            background: #0A0A0A;
-            color: white;
-            border: none;
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            cursor: pointer;
-            transition: opacity 0.3s;
-            font-weight: 500;
-        }
-
-        .letter-button:hover {
-            opacity: 0.8;
-        }
-
-        .letter-title {
-            text-align: center;
-            font-size: 1.75rem;
-            font-weight: 600;
-            margin-bottom: 3rem;
-            letter-spacing: 0.05em;
-            display: none;
-        }
-
-        .letter-content {
-            max-width: 750px;
-            margin: 0 auto;
-            font-size: 1.05rem;
-            line-height: 1.9;
-            font-weight: 300;
-            color: #2A2A2A;
-            display: none;
-            text-align: left;
-            margin-top: 3rem;
-        }
-
-        .letter-content.visible {
-            display: block;
-        }
-
-        .letter-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .letter-signature {
-            margin-top: 3rem;
-            text-align: right;
-            font-style: italic;
-            color: #6B6B6B;
-        }
-
-        /* Coming Soon */
-        .coming-soon-text {
-            font-size: 1.25rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #0A0A0A;
-            margin-bottom: 2rem;
-        }
-
-        /* Share */
-        .share {
-            padding: 3rem 0;
-            text-align: center;
-            border-bottom: 1px solid #E5E5E5;
-        }
-
-        .share-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: #6B6B6B;
-            margin-bottom: 1.5rem;
-        }
-
-        .share-icons {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-        }
-
-        .share-icon {
-            width: 24px;
-            height: 24px;
-            opacity: 0.6;
-            cursor: pointer;
-            transition: opacity 0.3s;
-        }
-
-        .share-icon:hover {
-            opacity: 1;
-        }
-
-        /* Cast Section */
-        .cast-section {
-            padding: 4rem 0;
-            border-bottom: 1px solid #E5E5E5;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 3rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .cast-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-
-        .cast-card {
-            text-align: center;
-        }
-
-        .cast-photo {
-            width: 100%;
-            aspect-ratio: 16/10;
-            background: #f5f5f5;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            color: #6B6B6B;
-            overflow: hidden;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .character-name {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
-            z-index: 10;
-        }
-
-        .character-name.right {
-            left: auto;
-            right: 1rem;
-        }
-
-        .character-name.stacked {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.2;
-        }
-
-        .cast-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .cast-photo:hover img {
-            transform: scale(1.05);
-        }
-
-        .cast-name {
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 0.25rem;
-        }
-
-        .cast-name a {
-            color: #0A0A0A;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .cast-name a:hover {
-            opacity: 0.6;
-        }
-
-        .cast-role {
-            font-size: 0.875rem;
-            color: #6B6B6B;
-        }
-
-        .cast-role a {
-            color: #0A0A0A;
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-
-        .cast-role a:hover {
-            opacity: 0.6;
-        }
-
-        /* Footer */
-        footer {
-            background: #0A0A0A;
-            color: white;
-            padding: 3rem 0 2rem;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-link {
-            color: white;
-            text-decoration: none;
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: opacity 0.3s;
-        }
-
-        .footer-link:hover {
-            opacity: 0.7;
-        }
-
-        .newsletter-form {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            max-width: 400px;
-        }
-
-        .newsletter-input {
-            padding: 0.75rem 1rem;
-            border: 1px solid rgba(255,255,255,0.2);
-            background: transparent;
-            color: white;
-            font-size: 0.875rem;
-            width: 100%;
-        }
-
-        .newsletter-input::placeholder {
-            color: rgba(255,255,255,0.5);
-        }
-
-        .newsletter-input:focus {
-            outline: none;
-            border-color: white;
-        }
-
-        .newsletter-submit {
-            padding: 0.75rem 1.5rem;
-            background: white;
-            color: #0A0A0A;
-            border: none;
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            cursor: pointer;
-            transition: opacity 0.3s;
-            font-weight: 500;
-        }
-
-        .newsletter-submit:hover {
-            opacity: 0.8;
-        }
-
-        .copyright {
-            text-align: center;
-            font-size: 0.75rem;
-            opacity: 0.6;
-        }
-
-        /* Fade-in Animations */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in-section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .metadata-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .cast-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-title-wrapper {
-                padding: 2rem;
-            }
-
-            .hero-title {
-                font-size: clamp(2rem, 10vw, 4rem);
-            }
-
-            .cast-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .newsletter-input {
-                width: 100%;
-            }
+        /* --- 1. GLOBAL STYLES & BRANDING --- */
+        :root { 
+            --roblox-blue: #00A2FF; 
+            --roblox-green: #00E676; 
+            --candy-pink: #FF1493; 
+            --candy-yellow: #FFD700;
+            --ui-bg-panel: rgba(0, 0, 0, 0.75);
+            --text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        body { 
+            margin: 0; padding: 0; overflow: hidden; 
+            background: #000 url('Roblox_Bg.jpg') no-repeat center center fixed; 
+            background-size: cover; color: white; 
+            font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; 
+            touch-action: none; 
+            display: flex; flex-direction: column; align-items: center; 
+            height: 100vh; width: 100vw;
+            transition: background 1.5s ease-in-out;
+        }
+
+        /* --- 2. DECORATIVE SKY ELEMENTS --- */
+        .cloud { 
+            position: absolute; background: rgba(255, 255, 255, 0.8); 
+            border-radius: 10px; z-index: 1; pointer-events: none; 
+        }
+        @keyframes drift { 
+            from { transform: translateX(-400px); } 
+            to { transform: translateX(120vw); } 
+        }
+
+        /* --- 3. THE HUD (TOP BAR) --- */
+        #ui-header { 
+            height: 12vh; width: 100%; display: flex; 
+            flex-direction: column; justify-content: center; align-items: center; 
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); 
+            z-index: 100; border-bottom: 2px solid rgba(255,255,255,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        /* --- 4. GAMEPLAY CONTAINER (73% HEIGHT) --- */
+        #main-layout { 
+            display: flex; flex: 1; width: 100%; 
+            justify-content: center; align-items: center; gap: 15px; 
+            position: relative; z-index: 50; padding: 10px; box-sizing: border-box;
+        }
+
+        .sidebar { 
+            display: flex; flex-direction: column; justify-content: center; 
+            align-items: center; gap: 15px; width: 18vw; max-width: 90px; 
+        }
+        .sidebar-label { font-size: 11px; font-weight: 900; letter-spacing: 1px; }
+
+        .box { 
+            background: var(--ui-bg-panel); border: 4px solid #FFF; 
+            border-radius: 20px; width: 75px; height: 75px; 
+            display: flex; align-items: center; justify-content: center; 
+            position: relative; box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.4); 
+        }
+
+        /* --- 5. DANTE AVATAR ANIMATION --- */
+        #dante-avatar-container { 
+            position: absolute; top: -75px; left: 5px; width: 65px; height: 65px; 
+            transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            z-index: 200;
+        }
+        #dante-avatar-container img { 
+            width: 100%; height: 100%; object-fit: contain; 
+            filter: drop-shadow(4px 4px 6px rgba(0,0,0,0.5)); 
+        }
+
+        /* --- 6. THE GRID (STRETCH-PROOF RATIO) --- */
+        #game-container { 
+            position: relative; height: 98%; aspect-ratio: 10 / 20; 
+            border: 6px solid #FFF; border-radius: 30px; 
+            background: rgba(0, 0, 0, 0.45); overflow: hidden; 
+            box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.4);
+            display: flex; align-items: center; justify-content: center;
+        }
+        canvas#tetris { width: 100%; height: 100%; display: block; }
+
+        /* --- 7. PROGRESSION HUD --- */
+        #progress-container { 
+            width: 75%; height: 16px; background: rgba(255,255,255,0.2); 
+            border: 3px solid #FFF; border-radius: 12px; 
+            margin: 8px auto; overflow: hidden; 
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+        }
+        #progress-fill { 
+            width: 0%; height: 100%; background: var(--roblox-green); 
+            box-shadow: 0 0 20px var(--roblox-green); 
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+
+        /* --- 8. CONTROLS (BOTTOM BAR) --- */
+        .bottom-bar { 
+            display: flex; gap: 30px; padding: 15px; 
+            height: 15vh; width: 100%; justify-content: center; 
+            align-items: center; background: rgba(0, 0, 0, 0.5); 
+            box-sizing: border-box; z-index: 100;
+        }
+        .action-btn { 
+            width: 110px; height: 80px; border-radius: 22px; 
+            border: 5px solid #FFF; background: var(--roblox-blue); 
+            font-size: 34px; color: white; box-shadow: 0 8px 0px #0077be; 
+            cursor: pointer; display: flex; justify-content: center; align-items: center;
+        }
+        .action-btn:active { transform: translateY(4px); box-shadow: 0 4px 0px #0077be; }
+
+        /* --- 9. FULL-SCREEN OVERLAYS --- */
+        #start-overlay, #game-overlay { 
+            position: absolute; inset: 0; background: var(--roblox-blue); 
+            display: flex; flex-direction: column; align-items: center; 
+            justify-content: center; z-index: 1000; text-align: center; padding: 40px; 
+        }
+        .overlay-btn { 
+            padding: 22px 55px; background: var(--roblox-green); color: white; 
+            border: 6px solid white; border-radius: 60px; font-size: 32px; 
+            font-weight: bold; cursor: pointer; box-shadow: 0 10px 0px #009624; 
+            margin-top: 25px; text-transform: uppercase;
+        }
+        .overlay-btn:active { transform: translateY(4px); box-shadow: 0 6px 0px #009624; }
+        
+        #win-prize-image { 
+            width: 250px; margin-bottom: 25px; display: none; 
+            border-radius: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); 
+            border: 4px solid white;
+        }
+        
+        #mute-btn { 
+            position: absolute; top: 20px; right: 20px; width: 55px; height: 55px; 
+            background: rgba(255, 255, 255, 0.3); border: 3px solid #FFF; 
+            border-radius: 50%; display: flex; align-items: center; 
+            justify-content: center; z-index: 1100; font-size: 28px; cursor: pointer; 
         }
     </style>
 </head>
-<body>
-    <!-- Hero with Video -->
-    <section class="hero">
-        <img src="https://img.youtube.com/vi/ex0a9rHFAa0/maxresdefault.jpg" alt="SCRAMBLED" class="hero-video">
-        <button class="play-overlay" onclick="openTrailer()"></button>
-        <div class="hero-title-wrapper">
-            <h1 class="hero-title">Scrambled</h1>
-        </div>
-    </section>
 
-    <!-- Video Modal -->
-    <div class="video-modal" id="video-modal">
-        <div class="video-modal-content">
-            <button class="video-modal-close" onclick="closeTrailer()">&times;</button>
-            <iframe id="trailer-iframe" width="100%" height="100%" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<body onpointerdown="handleSystemAudioWakup()">
+
+    <div id="mute-btn" onclick="toggleGlobalMute()">🔊</div>
+
+    <div class="cloud" style="width:180px; height:60px; top:15%; animation: drift 42s linear infinite;"></div>
+    <div class="cloud" style="width:240px; height:80px; top:42%; animation: drift 58s linear reverse infinite;"></div>
+
+    <div id="start-overlay">
+        <img src="Dante_App_Logo.png" style="width:180px; margin-bottom:25px; filter: drop-shadow(6px 6px 0px rgba(0,0,0,0.3));">
+        <h1 style="font-size: 52px; margin: 0; text-shadow: 5px 5px 0px rgba(0,0,0,0.3);">DANTE'S RINGS</h1>
+        <p style="font-size: 22px; margin: 10px 0 30px 0;">Unlock the Future Vibrant Self</p>
+        <button class="overlay-btn" onclick="initiateGameSession()">START ADVENTURE</button>
+    </div>
+
+    <div id="ui-header">
+        <b id="world-title-label" style="font-size: 26px; text-transform: uppercase; color: var(--roblox-blue);">Underwater World</b>
+        <div style="font-size: 20px; margin: 5px 0; color: white;">SCORE: <span id="game-score">0</span> | LINES: <span id="game-lines">0</span></div>
+        <div id="progress-container"><div id="progress-fill"></div></div>
+    </div>
+    
+    <div id="main-layout">
+        <div class="sidebar">
+            <span class="sidebar-label">HOLD</span>
+            <div class="box">
+                <div id="dante-avatar-container"><img src="Dante_App_Logo.png" id="dante-img"></div>
+                <canvas id="hold-canvas" width="50" height="50"></canvas>
+            </div>
+        </div>
+
+        <div id="game-container">
+            <canvas id="tetris" width="200" height="400"></canvas>
+            
+            <div id="game-overlay" style="display:none; background: rgba(0, 0, 0, 0.96);">
+                <img id="win-prize-image" src="Youwin.png">
+                <h2 id="msg-overlay-title" style="font-size: 38px; margin: 15px 0; color: var(--roblox-blue);">PAUSED</h2>
+                <p id="msg-overlay-text" style="font-size:20px; max-width:340px; line-height: 1.5; margin: 15px 0; color: white;"></p>
+                <button class="overlay-btn" id="msg-overlay-btn" onclick="executeOverlayAction()">CONTINUE</button>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <span class="sidebar-label">NEXT</span>
+            <div class="box"><canvas id="next-canvas" width="50" height="50"></canvas></div>
         </div>
     </div>
 
-    <!-- Bio Modal -->
-    <div class="bio-modal" id="bio-modal">
-        <div class="bio-modal-content">
-            <button class="bio-modal-close" onclick="closeBio()">&times;</button>
-            <h2 class="bio-title">Frank Reina</h2>
-            <img src="./Reina.jpg" alt="Frank Reina" class="bio-image">
-            <div class="bio-text">
-                <p>Frank Reina was born in San Juan, Puerto Rico, and forged his craft alongside Hollywood's biggest productions and luminaries. He worked with legendary producer Robert Evans (Chinatown), and on Christopher Nolan's Interstellar and The Dark Knight Rises as a production assistant. He also served as the right-hand man to action maestro Spiro Razatos (Fast & Furious franchise).</p>
-
-                <p>His credits span over 20 major studio films, including Captain America: Civil War, F9: The Fast Saga, Bad Boys for Life, Venom, and the Coen Bros.' Hail, Caesar! He wrote and directed Scrambled, a comic romp described as "a cross between South Park and Almodóvar", along with the short films Shit!, White Shark, Star Tails, and Key Nuts.</p>
-
-                <p>His next project, Future Vibrant Self, follows one man's unraveling and reinvention across book, film, and digital experience — a cross-media exploration of personal transformation.</p>
-            </div>
-        </div>
+    <div class="bottom-bar">
+        <button class="action-btn" onpointerdown="handlePieceHold()" title="Hold Ring">📦</button>
+        <button class="action-btn" onpointerdown="handlePieceRotate()" title="Spin Ring">🔄</button>
     </div>
 
-    <!-- Background Music -->
-    <audio id="bg-music" loop>
-        <source src="./Flamenco Legend Music.mp3" type="audio/mpeg">
-    </audio>
+<script>
+/**
+ * ============================================================================
+ * DANTE'S RINGS: THE CORE ENGINE
+ * ============================================================================
+ * Explicit verification:
+ * - iPhone/iPad Aspect locking [Active]
+ * - .m4a Soundtrack Support [Active]
+ * - Roblox Atmosphere Sync [Active]
+ * - Hello Kitty Visual Logic [Active]
+ */
 
-    <!-- Easter Egg Modal - BFF -->
-    <div class="easter-egg-modal" id="easter-egg-bff">
-        <div class="easter-egg-content">
-            <button class="easter-egg-close" onclick="closeEasterEgg('bff')">&times;</button>
-            <img src="./Tao_BFF_logo.jpg" alt="Best Friends Forever" class="easter-egg-image">
-        </div>
-    </div>
+// --- I. CORE CONSTANTS & DOM ---
+const gameGrid = document.getElementById('tetris');
+const gameCtx = gameGrid.getContext('2d');
+const holdCanvas = document.getElementById('hold-canvas');
+const holdCtx = holdCanvas.getContext('2d');
+const nextCanvas = document.getElementById('next-canvas');
+const nextCtx = nextCanvas.getContext('2d');
 
-    <!-- Easter Egg Modal - Tonty -->
-    <div class="easter-egg-modal" id="easter-egg-tonty">
-        <div class="easter-egg-content">
-            <button class="easter-egg-close" onclick="closeEasterEgg('tonty')">&times;</button>
-            <img src="./poster_Tonty.jpg" alt="Tonty Poster" class="easter-egg-image">
-        </div>
-    </div>
+const overlayBox = document.getElementById('game-overlay');
+const overlayTitle = document.getElementById('msg-overlay-title');
+const overlayText = document.getElementById('msg-overlay-text');
+const overlayBtn = document.getElementById('msg-overlay-btn');
+const winnerLogo = document.getElementById('win-prize-image');
 
-    <!-- Metadata -->
-    <section class="metadata fade-in-section">
-        <div class="container">
-            <div class="metadata-grid">
-                <div>
-                    <div class="metadata-label">Written & Directed By</div>
-                    <div class="metadata-value">
-                        <a href="javascript:void(0)" onclick="openBio()" style="cursor:pointer">Frank Reina</a>
-                    </div>
-                </div>
-                <div class="metadata-tagline" onclick="openEasterEgg('bff')">
-                    Best friendships never die
-                </div>
-                <div class="metadata-right">
-                    <div class="metadata-label">Produced By</div>
-                    <div class="metadata-value">Robert A. Stone</div>
-                </div>
-            </div>
-        </div>
-    </section>
+const progMeterFill = document.getElementById('progress-fill');
+const danteSpriteBox = document.getElementById('dante-avatar-container');
+const worldNameHeader = document.getElementById('world-title-label');
 
-    <!-- Synopsis -->
-    <section class="synopsis fade-in-section">
-        <div class="container">
-            <p class="synopsis-warning" onclick="openEasterEgg('tonty')">If you don't take comedy seriously, adjust your attention</p>
-            <p class="synopsis-text">
-                An omelet chef's shot at culinary greatness gets scrambled when his ex-best friend — a chaotic ex-con with a notorious injury — is released from prison and drags him into escalating mayhem that threatens to destroy his career, his new girl, and his sanity. All in the name of their best friendship.
-            </p>
-        </div>
-    </section>
+const COLS = 10;
+const ROWS = 20;
+const BLOCK = 20;
 
-    <!-- Poster -->
-    <section class="poster-section fade-in-section">
-        <div class="container">
-            <img src="./poster_hugo.jpg" alt="SCRAMBLED Poster" class="poster-image">
-        </div>
-    </section>
+// Initialize Scaling
+gameCtx.scale(BLOCK, BLOCK); 
+holdCtx.scale(12, 12); 
+nextCtx.scale(12, 12);
 
-    <!-- Share -->
-    <section class="share fade-in-section">
-        <div class="container">
-            <div class="coming-soon-text">Coming Soon</div>
-            <div class="share-label">Share</div>
-            <div class="share-icons">
-                <svg class="share-icon" onclick="shareOn('facebook')" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-                <svg class="share-icon" onclick="shareOn('twitter')" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                </svg>
-                <svg class="share-icon" onclick="shareOn('email')" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                </svg>
-            </div>
-        </div>
-    </section>
+// --- II. AUDIO ARCHITECTURE (.M4A VERIFIED) ---
+const audioCtxInstance = new (window.AudioContext || window.webkitAudioContext)();
+const mainSoundtrack = new Audio('Dantesgamemusic.m4a');
+mainSoundtrack.loop = true; 
+mainSoundtrack.volume = 0.45;
 
-    <!-- Cast Section -->
-    <section class="cast-section fade-in-section">
-        <div class="container">
-            <h2 class="section-title">The Cast</h2>
-            <div class="cast-grid">
-                <div class="cast-card">
-                    <div class="cast-photo">
-                        <img src="./Hapka.jpg" alt="Mark Hapka">
-                        <div class="character-name">HUGO</div>
-                    </div>
-                    <div class="cast-name">Mark Hapka</div>
-                    <div class="cast-role">
-                        <a href="https://www.instagram.com/markhapka/" target="_blank" style="margin-right:8px">IG</a>
-                        <a href="https://www.imdb.com/name/nm2639722/" target="_blank">IMDb</a>
-                    </div>
-                </div>
-                <div class="cast-card">
-                    <div class="cast-photo">
-                        <img src="./Julian.jpg" alt="Jose Julian">
-                        <div class="character-name">VIGGO</div>
-                    </div>
-                    <div class="cast-name">Jose Julian</div>
-                    <div class="cast-role">
-                        <a href="https://www.imdb.com/name/nm1214509/" target="_blank">IMDb</a>
-                    </div>
-                </div>
-                <div class="cast-card">
-                    <div class="cast-photo">
-                        <img src="./Voelkel.jpg" alt="Riley Voelkel">
-                        <div class="character-name">CRISTINA</div>
-                    </div>
-                    <div class="cast-name">Riley Voelkel</div>
-                    <div class="cast-role">
-                        <a href="https://www.instagram.com/lifeofrileyv/" target="_blank" style="margin-right:8px">IG</a>
-                        <a href="https://www.imdb.com/name/nm3754272/" target="_blank">IMDb</a>
-                    </div>
-                </div>
-                <div class="cast-card">
-                    <div class="cast-photo">
-                        <img src="./Shechori.jpg" alt="Tomer Shechori">
-                        <div class="character-name">TONTY</div>
-                    </div>
-                    <div class="cast-name">Tomer Shechori</div>
-                    <div class="cast-role">
-                        <a href="https://tomer-shechori.com/biography/" target="_blank" style="margin-right:8px">Bio</a>
-                        <a href="https://www.imdb.com/name/nm3028788/" target="_blank">IMDb</a>
-                    </div>
-                </div>
-                <div class="cast-card">
-                    <div class="cast-photo">
-                        <img src="./ODonohue.jpg" alt="Becky O'Donohue">
-                        <div class="character-name">GIAVANNA</div>
-                    </div>
-                    <div class="cast-name">Becky O'Donohue</div>
-                    <div class="cast-role">
-                        <a href="https://www.imdb.com/name/nm1659558/" target="_blank">IMDb</a>
-                    </div>
-                </div>
-                <div class="cast-card">
-                    <div class="cast-photo">
-                        <img src="./Nnadi.jpg" alt="Chi Nnadi">
-                        <div class="character-name right">TANNER</div>
-                    </div>
-                    <div class="cast-name">Chi Nnadi</div>
-                    <div class="cast-role">
-                        <a href="https://www.instagram.com/chi.was.here/" target="_blank" style="margin-right:8px">IG</a>
-                        <a href="https://www.imdb.com/name/nm1938165/" target="_blank">IMDb</a>
-                    </div>
-                </div>
-                <div class="cast-card">
-                    <div class="cast-photo">
-                        <img src="./Voges.jpg" alt="Torsten Voges">
-                        <div class="character-name right stacked">
-                            <span>KARL</span>
-                            <span>AIDELL</span>
-                        </div>
-                    </div>
-                    <div class="cast-name">Torsten Voges</div>
-                    <div class="cast-role">
-                        <a href="https://www.imdb.com/name/nm0901024/" target="_blank">IMDb</a>
-                    </div>
-                </div>
-                <div class="cast-card">
-                    <div class="cast-photo">
-                        <img src="./Dickson.jpg" alt="Neil Dickson">
-                        <div class="character-name">ROMAN</div>
-                    </div>
-                    <div class="cast-name">Neil Dickson</div>
-                    <div class="cast-role">
-                        <a href="https://www.instagram.com/dicksonneil/" target="_blank" style="margin-right:8px">IG</a>
-                        <a href="https://www.imdb.com/name/nm0225698/" target="_blank">IMDb</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+let audioSystemReady = false;
+let isAudioMuted = false;
 
-    <!-- Director's Letter -->
-    <section class="directors-letter fade-in-section">
-        <div class="container">
-            <button class="letter-button" onclick="toggleLetter()">Read The Scrambled Letter</button>
-            <h2 class="letter-title" id="letter-title">The Scrambled Letter</h2>
-            <div class="letter-content" id="letter-content">
-                <p>Making this movie almost killed me. My producer died. My production attorney died. My lead actor, Tomer Shechori died. After production.</p>
-
-                <p>I wear an opal ring to remind myself: I owe them this.</p>
-
-                <p>I shot Scrambled in 2012, when Obama was president and 'The Dark Knight Rises' ruled the summer box office.</p>
-
-                <p>My lead actor dropped out the day before production. We shot for three days without a protagonist. I was this close to getting ready to sling omelettes in front of the camera.</p>
-
-                <p>I recut it. Recomposed the score. Got rejected from every major and minor festival.</p>
-
-                <p>They said it was too immature. Too offensive. Too cartoonish.</p>
-
-                <p>They were right.</p>
-
-                <p>This is a comedy written from the perspective of a 20-something man-child who thinks omelettes are philosophy and betrayal is a juicy punchline. It's messy, juvenile, and over-the-top — because that's what immaturity is.</p>
-
-                <p>I wrote it after a brutal breakup, channeling all my rage, enthusiasm, and confusion into a screwball scenario where egg whites = self-worth and loyalty = crime. It's 'Animal House' meets 'South Park' meets a Pedro Almodóvar fever dream. It takes serious themes — best friendship, brotherhood, masculinity, relationships – and spins them absurd.</p>
-
-                <p>Because here's the twist: With increasing immaturity comes unlimited confidence. You attempt things that mature people would never risk. You fail spectacularly. You learn. You grow. But first, you have to play.</p>
-
-                <p>I love omelettes. I love Anthony Bourdain's idea that food brings people together. There aren't many omelette movies, so I made one. It's about a guy who's really good at eggs and really bad at life, and the ex-best friend who all he wants is to be legit BFFs again.</p>
-
-                <p>It's ridiculous. It's sincere. It's scrambled.</p>
-
-                <p>I hope you laugh. I hope you share it with friends who appreciate dangerous comedy. I hope Tomer, Ric, and David are watching somewhere, shaking their heads, knowing it was worth it.</p>
-
-                <p>Best friendships never die.</p>
-
-                <div class="letter-signature">
-                    FJR<br><br>
-                    -- Writer/ Director/ Omeletteer
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-links">
-                    <a href="https://www.imdb.com/title/tt2447742/" target="_blank" class="footer-link">IMDb</a>
-                    <a href="https://www.facebook.com/Scrambledfilm" target="_blank" class="footer-link">Facebook</a>
-                    <a href="https://www.instagram.com/frankjreina/" target="_blank" class="footer-link">Instagram</a>
-                    <a href="https://www.youtube.com/@FrankjReina" target="_blank" class="footer-link">YouTube</a>
-                </div>
-                <form class="newsletter-form" action="https://formspree.io/f/xaqdjgje" method="POST">
-                    <input type="text" name="firstName" class="newsletter-input" placeholder="First name" required>
-                    <input type="text" name="lastName" class="newsletter-input" placeholder="Last name" required>
-                    <input type="email" name="email" class="newsletter-input" placeholder="Email" required>
-                    <input type="hidden" name="_subject" value="New SCRAMBLED Newsletter Signup">
-                    <input type="hidden" name="_next" value="https://www.scrambledmovie.com/?subscribed=true">
-                    <button type="submit" class="newsletter-submit">Subscribe</button>
-                </form>
-            </div>
-            <div class="copyright">
-                © 2026 SCRAMBLED. All Rights Reserved.
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        function openTrailer() {
-            const modal = document.getElementById('video-modal');
-            const iframe = document.getElementById('trailer-iframe');
-            iframe.src = 'https://www.youtube.com/embed/ex0a9rHFAa0?autoplay=1';
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
+function handleSystemAudioWakup() {
+    if (!audioSystemReady) {
+        if (audioCtxInstance.state === 'suspended') {
+            audioCtxInstance.resume();
         }
+        audioSystemReady = true;
+    }
+}
 
-        function closeTrailer() {
-            const modal = document.getElementById('video-modal');
-            const iframe = document.getElementById('trailer-iframe');
-            iframe.src = '';
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
+function toggleGlobalMute() {
+    isAudioMuted = !isAudioMuted;
+    mainSoundtrack.muted = isAudioMuted;
+    document.getElementById('mute-btn').innerText = isAudioMuted ? '🔇' : '🔊';
+}
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeTrailer();
-        });
+/**
+ * Procedural SFX generation
+ */
+function triggerBeep(freq, wave, duration) {
+    if (isAudioMuted || !audioSystemReady) return;
+    
+    const osc = audioCtxInstance.createOscillator();
+    const gain = audioCtxInstance.createGain();
+    
+    osc.type = wave;
+    osc.frequency.setValueAtTime(freq, audioCtxInstance.currentTime);
+    
+    gain.gain.setValueAtTime(0.08, audioCtxInstance.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtxInstance.currentTime + duration);
+    
+    osc.connect(gain);
+    gain.connect(audioCtxInstance.destination);
+    
+    osc.start();
+    osc.stop(audioCtxInstance.currentTime + duration);
+}
 
-        document.getElementById('video-modal').addEventListener('click', function(e) {
-            if (e.target === this) closeTrailer();
-        });
+// --- III. STORYBOARD & LEVEL PARAMETERS ---
+const ringLessons = [
+    "Underwater: Dante learns to breathe beneath the surface of his feelings.",
+    "Pandora: Curiosity opens new colors in Dante's sky.",
+    "Minecraft: Dante discovers he can rebuild any pattern he breaks.",
+    "Lego World: Dante plays with structure instead of fearing it.",
+    "Rainforest: Dante trusts growth he cannot yet see.",
+    "Outer Space: Dante finds stillness in the vast unknown.",
+    "Jungle: Dante follows instinct, moving piece by piece.",
+    "School: Dante realizes every mis-drop is a lesson.",
+    "Sun Surface: Dante holds his shape even in the heat.",
+    "Dream World: Dante wakes up inside his own imagination."
+];
 
-        function shareOn(platform) {
-            const url = encodeURIComponent(window.location.href);
-            const text = encodeURIComponent('SCRAMBLED - Best friendships never die');
+const adventureLevels = [
+    { name: "Underwater World", bg: "rgba(0, 168, 255, 0.4)", target: 30, speed: 1000 },
+    { name: "Pandora", bg: "rgba(106, 13, 173, 0.4)", target: 60, speed: 900 },
+    { name: "Minecraft", bg: "rgba(124, 252, 0, 0.4)", target: 90, speed: 820 },
+    { name: "Legoworld", bg: "rgba(255, 0, 0, 0.4)", target: 120, speed: 750 },
+    { name: "Rainforest", bg: "rgba(0, 100, 0, 0.4)", target: 150, speed: 680 },
+    { name: "Outer Space", bg: "rgba(0, 0, 34, 0.6)", target: 180, speed: 600 },
+    { name: "Jungle", bg: "rgba(34, 139, 34, 0.4)", target: 210, speed: 520 },
+    { name: "School", bg: "rgba(47, 79, 79, 0.4)", target: 240, speed: 450 },
+    { name: "Sun Surface", bg: "rgba(255, 69, 0, 0.4)", target: 270, speed: 380 },
+    { name: "Dream World", bg: "rgba(255, 182, 193, 0.5)", target: 350, speed: 320 }
+];
 
-            switch(platform) {
-                case 'facebook':
-                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
-                    break;
-                case 'twitter':
-                    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
-                    break;
-                case 'email':
-                    window.location.href = `mailto:?subject=SCRAMBLED&body=Check out this film: ${window.location.href}`;
-                    break;
+// --- IV. PIECE DEFINITIONS (STORY RINGS) ---
+const pieceColors = [
+    null, 
+    '#FF1493', // 1: Hello Kitty Pink
+    '#FFD700', // 2: Hello Kitty Yellow
+    '#A020F0', // 3: Pandora Purple
+    '#00E5FF', // 4: Sky Cyan
+    '#FF4500', // 5: Sun Orange
+    '#39FF14', // 6: Jungle Green
+    '#FF0000'  // 7: School Red
+];
+
+/**
+ * Creates the physical matrix for each ring shape
+ */
+function createPieceMatrix(type) {
+    if (type === 'I') return [[0,1,0,0],[0,1,0,0],[0,1,0,0],[0,1,0,0]];
+    if (type === 'L') return [[0,2,0],[0,2,0],[0,2,2]];
+    if (type === 'J') return [[0,3,0],[0,3,0],[3,3,0]];
+    if (type === 'O') return [[4,4],[4,4]];
+    if (type === 'Z') return [[5,5,0],[0,5,5],[0,0,0]];
+    if (type === 'S') return [[0,6,6],[6,6,0],[0,0,0]];
+    if (type === 'T') return [[0,7,0],[7,7,7],[0,0,0]];
+}
+
+// --- V. ENGINE STATE & INITIALIZATION ---
+const gridArena = Array.from({length: ROWS}, () => Array(COLS).fill(0));
+const playerState = { pos: {x: 0, y: 0}, matrix: null, score: 0 };
+
+let nextPieceMatrix = null;
+let heldPieceMatrix = null;
+let holdAvailable = true;
+let linesClearedCount = 0;
+let worldIndex = 0;
+
+let isGamePaused = true;
+let dropTimer = 0;
+let lastTimestamp = 0;
+let activeDropInterval = 1000;
+
+function initiateGameSession() {
+    handleSystemAudioWakup();
+    document.getElementById('start-overlay').style.display = 'none';
+    completeReset();
+}
+
+function completeReset() {
+    gridArena.forEach(row => row.fill(0));
+    linesClearedCount = 0; 
+    playerState.score = 0; 
+    worldIndex = 0;
+    heldPieceMatrix = null; 
+    nextPieceMatrix = null;
+    activeDropInterval = adventureLevels[0].speed;
+    worldNameHeader.innerText = adventureLevels[0].name;
+    
+    refreshHUD();
+    overlayBox.style.display = 'none';
+    isGamePaused = false;
+    
+    spawnNewPiece();
+    if (!isAudioMuted) mainSoundtrack.play().catch(e => console.log("Music Playing"));
+    requestAnimationFrame(mainUpdateLoop);
+}
+
+/**
+ * Spawns a ring at the top row (Y=0) and centers it horizontally.
+ */
+function spawnNewPiece() {
+    const pieces = 'ILJOTSZ';
+    // 1. Spawning
+    playerState.matrix = nextPieceMatrix || createPieceMatrix(pieces[Math.floor(Math.random() * pieces.length)]);
+    nextPieceMatrix = createPieceMatrix(pieces[Math.floor(Math.random() * pieces.length)]);
+    
+    // 2. Initial Positioning (Precise top-center)
+    playerState.pos.y = 0;
+    playerState.pos.x = (COLS / 2 | 0) - (playerState.matrix[0].length / 2 | 0);
+    
+    holdAvailable = true;
+    
+    // 3. Collision End Check
+    if (checkCollision(gridArena, playerState)) {
+        triggerBeep(150, 'sawtooth', 0.6);
+        displayGameOverlay("STACKED OUT!", "Breathe. notice the pattern you're building. Every step is growth.", false);
+    }
+}
+
+// --- VI. CORE PHYSICS LOGIC ---
+
+function checkCollision(arena, p) {
+    const [m, o] = [p.matrix, p.pos];
+    for (let y = 0; y < m.length; ++y) {
+        for (let x = 0; x < m[y].length; ++x) {
+            if (m[y][x] !== 0 && (arena[y + o.y] && arena[y + o.y][x + o.x]) !== 0) {
+                return true;
             }
         }
+    }
+    return false;
+}
 
-        // Fade-in animations on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+function mergePieceIntoArena(arena, p) {
+    p.matrix.forEach((row, y) => row.forEach((v, x) => { 
+        if (v !== 0) arena[y + p.pos.y][x + p.pos.x] = v; 
+    }));
+}
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+/**
+ * Scans arena for full rows and triggers Dante Jump animation.
+ */
+function processArenaSweep() {
+    let clearedRows = 0;
+    for (let y = gridArena.length - 1; y >= 0; --y) {
+        if (gridArena[y].every(cell => cell !== 0)) {
+            gridArena.splice(y, 1);
+            gridArena.unshift(new Array(COLS).fill(0));
+            clearedRows++;
+            y++; 
+        }
+    }
+    if (clearedRows > 0) {
+        linesClearedCount += clearedRows;
+        playerState.score += clearedRows * 10;
+        triggerBeep(523, 'sine', 0.25); 
+        refreshHUD();
+        
+        // DANTE JUMP TRIGGER
+        danteSpriteBox.style.transform = 'scale(1.5) translateY(-25px)';
+        setTimeout(() => danteSpriteBox.style.transform = 'scale(1) translateY(0)', 250);
+    }
+}
+
+function refreshHUD() {
+    document.getElementById('game-score').innerText = playerState.score;
+    document.getElementById('game-lines').innerText = linesClearedCount;
+    
+    const theme = adventureLevels[worldIndex];
+    const prevGoal = worldIndex > 0 ? adventureLevels[worldIndex - 1].target : 0;
+    
+    const relativeProgress = linesClearedCount - prevGoal;
+    const distanceNeeded = theme.target - prevGoal;
+    
+    const pct = Math.max(0, Math.min(100, (relativeProgress / distanceNeeded * 100)));
+    progMeterFill.style.width = pct + '%';
+
+    // WIN CHECK (DREAM WORLD)
+    if (worldIndex === adventureLevels.length - 1 && linesClearedCount >= theme.target) {
+        displayGameOverlay("YOU REACHED DREAM WORLD!", "Dante climbed every ring. The Self you are rehearsing is complete.", true);
+        return;
+    }
+    
+    // LEVEL UP CHECK
+    if (linesClearedCount >= theme.target && worldIndex < adventureLevels.length - 1) {
+        worldIndex++;
+        activeDropInterval = adventureLevels[worldIndex].speed;
+        worldNameHeader.innerText = adventureLevels[worldIndex].name;
+        triggerBeep(880, 'square', 0.4);
+        displayGameOverlay(adventureLevels[worldIndex].name, ringLessons[worldIndex], false);
+    }
+}
+
+// --- VII. OVERLAY LOGIC ---
+
+function displayGameOverlay(title, description, isVictory) {
+    isGamePaused = true; 
+    mainSoundtrack.pause();
+    
+    overlayTitle.innerText = title;
+    overlayText.innerText = description;
+    winnerLogo.style.display = isVictory ? 'block' : 'none';
+    
+    if (isVictory) {
+        overlayBtn.innerText = "PLAY AGAIN";
+    } else if (title === "STACKED OUT!") {
+        overlayBtn.innerText = "START AGAIN";
+    } else {
+        overlayBtn.innerText = "CONTINUE";
+    }
+    
+    overlayBox.style.display = 'flex';
+}
+
+function executeOverlayAction() {
+    handleSystemAudioWakup();
+    if (overlayBtn.innerText === "CONTINUE") {
+        overlayBox.style.display = 'none';
+        isGamePaused = false;
+        if (!isAudioMuted) mainSoundtrack.play();
+        requestAnimationFrame(mainUpdateLoop);
+    } else {
+        completeReset();
+    }
+}
+
+// --- VIII. TOUCH & GESTURE ENGINE (STRETCH-PROOF) ---
+let touchX = 0, touchY = 0, touchMoved = false;
+
+gameGrid.addEventListener('touchstart', e => {
+    if (isGamePaused) return;
+    touchX = e.touches[0].clientX;
+    touchY = e.touches[0].clientY;
+    touchMoved = false;
+}, {passive: false});
+
+gameGrid.addEventListener('touchmove', e => {
+    if (isGamePaused) return;
+    e.preventDefault(); 
+    
+    const curX = e.touches[0].clientX;
+    const curY = e.touches[0].clientY;
+    const dx = curX - touchX;
+    const dy = curY - touchY;
+    
+    // Jitter buffer (12px)
+    if (Math.abs(dx) > 12 || Math.abs(dy) > 12) touchMoved = true;
+
+    // Tactical Drag: Horizontal Slide
+    if (Math.abs(dx) > 35) {
+        const dir = dx > 0 ? 1 : -1;
+        playerState.pos.x += dir;
+        
+        if (checkCollision(gridArena, playerState)) {
+            playerState.pos.x -= dir;
+        } else {
+            triggerBeep(400, 'sine', 0.04);
+        }
+        touchX = curX; 
+    }
+    
+    // Sticky Pull: Soft Drop
+    if (dy > 55) {
+        activeDropInterval = 45; 
+    }
+}, {passive: false});
+
+gameGrid.addEventListener('touchend', () => {
+    if (!isGamePaused && !touchMoved) {
+        handlePieceRotate(); // Intentional tap spins
+    }
+    if (!isGamePaused) {
+        activeDropInterval = adventureLevels[worldIndex].speed;
+    }
+});
+
+// --- IX. ROTATION & PIECE MGMT ---
+
+function handlePieceHold() {
+    if (!holdAvailable || isGamePaused) return;
+    
+    if (!heldPieceMatrix) {
+        heldPieceMatrix = playerState.matrix;
+        spawnNewPiece();
+    } else {
+        const tmp = playerState.matrix;
+        playerState.matrix = heldPieceMatrix;
+        heldPieceMatrix = tmp;
+        playerState.pos.y = 0;
+        playerState.pos.x = (COLS / 2 | 0) - (playerState.matrix[0].length / 2 | 0);
+    }
+    holdAvailable = false;
+    triggerBeep(300, 'sine', 0.12);
+}
+
+function handlePieceRotate() {
+    const originalX = playerState.pos.x;
+    let push = 1;
+    
+    // Matrix Rotation logic
+    for (let y = 0; y < playerState.matrix.length; ++y) {
+        for (let x = 0; x < y; ++x) {
+            [playerState.matrix[x][y], playerState.matrix[y][x]] = [playerState.matrix[y][x], playerState.matrix[x][y]];
+        }
+    }
+    playerState.matrix.forEach(row => row.reverse());
+    
+    // Wall Kick Mechanism
+    while (checkCollision(gridArena, playerState)) {
+        playerState.pos.x += push;
+        push = -(push + (push > 0 ? 1 : -1));
+        if (push > 4) {
+            // Undo if stuck
+            playerState.matrix.forEach(row => row.reverse());
+            for (let y = 0; y < playerState.matrix.length; ++y) {
+                for (let x = 0; x < y; ++x) {
+                    [playerState.matrix[x][y], playerState.matrix[y][x]] = [playerState.matrix[y][x], playerState.matrix[x][y]];
                 }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in-section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Toggle director's letter
-        function toggleLetter() {
-            const content = document.getElementById('letter-content');
-            const title = document.getElementById('letter-title');
-            const button = document.querySelector('.letter-button');
-
-            if (content.classList.contains('visible')) {
-                content.classList.remove('visible');
-                title.style.display = 'none';
-                button.textContent = 'Read The Scrambled Letter';
-            } else {
-                content.classList.add('visible');
-                title.style.display = 'block';
-                button.textContent = 'Close';
             }
+            playerState.pos.x = originalX;
+            return;
         }
+    }
+    triggerBeep(600, 'sine', 0.05);
+}
 
-        // Bio modal functions
-        function openBio() {
-            const modal = document.getElementById('bio-modal');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+// --- X. RENDERING PIPELINE (HELLO KITTY LOGIC) ---
 
-        function closeBio() {
-            const modal = document.getElementById('bio-modal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
+function drawBlock(ctxTarget, xPos, yPos, colorID, isGhostShadow = false) {
+    ctxTarget.globalAlpha = isGhostShadow ? 0.35 : 1.0;
+    const cx = xPos + 0.5;
+    const cy = yPos + 0.5;
+    
+    // HELLO KITTY EAR DRAWING
+    // Logic: Color 1 (Pink) and 2 (Yellow) get ears, but only if they are not ghost shadows.
+    if (!isGhostShadow && (colorID === 1 || colorID === 2)) {
+        ctxTarget.fillStyle = pieceColors[colorID];
+        // Left Ear
+        ctxTarget.beginPath(); 
+        ctxTarget.arc(cx - 0.25, cy - 0.35, 0.15, 0, Math.PI * 2); 
+        ctxTarget.fill();
+        // Right Ear
+        ctxTarget.beginPath(); 
+        ctxTarget.arc(cx + 0.25, cy - 0.35, 0.15, 0, Math.PI * 2); 
+        ctxTarget.fill();
+    }
+    
+    // THE PHYSICAL RING
+    ctxTarget.beginPath();
+    ctxTarget.arc(cx, cy, 0.42, 0, Math.PI * 2);
+    ctxTarget.fillStyle = pieceColors[colorID];
+    ctxTarget.fill();
+    ctxTarget.strokeStyle = '#FFFFFF';
+    ctxTarget.lineWidth = 0.08;
+    ctxTarget.stroke();
+    
+    ctxTarget.globalAlpha = 1.0;
+}
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeBio();
-            }
-        });
-
-        document.getElementById('bio-modal').addEventListener('click', function(e) {
-            if (e.target === this) closeBio();
-        });
-
-        // Background music control
-        const bgMusic = document.getElementById('bg-music');
-
-        // Play music on first user interaction
-        document.addEventListener('click', function playMusic() {
-            bgMusic.play().catch(e => console.log('Audio play prevented:', e));
-            document.removeEventListener('click', playMusic);
-        }, { once: true });
-
-        // Pause music when trailer opens, resume when it closes
-        const originalOpenTrailer = openTrailer;
-        window.openTrailer = function() {
-            bgMusic.pause();
-            originalOpenTrailer();
-        };
-
-        const originalCloseTrailer = closeTrailer;
-        window.closeTrailer = function() {
-            originalCloseTrailer();
-            bgMusic.play().catch(e => console.log('Audio play prevented:', e));
-        };
-
-        // Easter egg modal functions
-        function openEasterEgg(type) {
-            const modal = document.getElementById(`easter-egg-${type}`);
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeEasterEgg(type) {
-            const modal = document.getElementById(`easter-egg-${type}`);
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Close easter eggs on escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeEasterEgg('bff');
-                closeEasterEgg('tonty');
+function drawMatrix(ctxTarget, matrix, offset, asGhost = false) {
+    if (!matrix) return;
+    matrix.forEach((row, y) => {
+        row.forEach((val, x) => {
+            if (val !== 0) {
+                drawBlock(ctxTarget, x + offset.x, y + offset.y, val, asGhost);
             }
         });
+    });
+}
 
-        // Close easter eggs on backdrop click
-        document.getElementById('easter-egg-bff').addEventListener('click', function(e) {
-            if (e.target === this) closeEasterEgg('bff');
-        });
+function fullRender() {
+    // Fill the Background with the current world's hue
+    gameCtx.fillStyle = adventureLevels[worldIndex].bg;
+    gameCtx.fillRect(0, 0, gameGrid.width, gameGrid.height);
+    
+    // Draw Baseplate Grid lines (Roblox Style)
+    gameCtx.strokeStyle = "rgba(255, 255, 255, 0.15)";
+    gameCtx.lineWidth = 0.03;
+    for(let x = 0; x <= COLS; x++) { 
+        gameCtx.beginPath(); gameCtx.moveTo(x, 0); gameCtx.lineTo(x, ROWS); gameCtx.stroke(); 
+    }
+    for(let y = 0; y <= ROWS; y++) { 
+        gameCtx.beginPath(); gameCtx.moveTo(0, y); gameCtx.lineTo(COLS, y); gameCtx.stroke(); 
+    }
 
-        document.getElementById('easter-egg-tonty').addEventListener('click', function(e) {
-            if (e.target === this) closeEasterEgg('tonty');
-        });
-    </script>
+    if (playerState.matrix) {
+        // Draw Landed Rings
+        drawMatrix(gameCtx, gridArena, {x: 0, y: 0});
+        
+        // Calculate & Draw Ghost Ring
+        const ghost = { x: playerState.pos.x, y: playerState.pos.y };
+        while (!checkCollision(gridArena, { pos: ghost, matrix: playerState.matrix })) {
+            ghost.y++;
+        }
+        ghost.y--;
+        drawMatrix(gameCtx, playerState.matrix, ghost, true);
+        
+        // Draw Falling Ring
+        drawMatrix(gameCtx, playerState.matrix, playerState.pos);
+    }
+    
+    // Update Sidebars
+    nextCtx.clearRect(0, 0, 5, 5);
+    drawMatrix(nextCtx, nextPieceMatrix, {x: 0, y: 0});
+    
+    holdCtx.clearRect(0, 0, 5, 5);
+    if (heldPieceMatrix) {
+        drawMatrix(holdCtx, heldPieceMatrix, {x: 0, y: 0});
+    }
+}
+
+// --- XI. SYSTEM UPDATE LOOP ---
+
+function mainUpdateLoop(timestamp = 0) {
+    if (isGamePaused) return;
+    
+    const delta = timestamp - lastTimestamp;
+    lastTimestamp = timestamp;
+    
+    dropTimer += delta;
+    if (dropTimer > activeDropInterval) {
+        playerState.pos.y++;
+        // Collision logic
+        if (checkCollision(gridArena, playerState)) {
+            playerState.pos.y--;
+            mergePieceIntoArena(gridArena, playerState);
+            processArenaSweep();
+            spawnNewPiece();
+            triggerBeep(200, 'sine', 0.1);
+        }
+        dropTimer = 0;
+    }
+    
+    fullRender();
+    requestAnimationFrame(mainUpdateLoop);
+}
+
+// INITIAL CALL
+fullRender();
+console.log("System Status: Dante's Rings initialized. Ready for adventure.");
+</script>
 </body>
 </html>
